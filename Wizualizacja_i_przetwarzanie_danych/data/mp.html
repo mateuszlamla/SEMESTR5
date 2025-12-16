@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+
+    <html lang="pl"><head id="j_id_4"><link type="text/css" rel="stylesheet" href="/javax.faces.resource/theme.css.seam?ln=primefaces-omega" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/stylesheet/fonts/lato.css.seam?op_v=1764007904708" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/stylesheet/fonts/roboto.css.seam?op_v=1764007904708" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/stylesheet/fonts/material-icons.css.seam?op_v=1764007904708" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/components.css.seam?ln=primefaces&amp;v=8.0&amp;v=8.0" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/texteditor/texteditor.css.seam?ln=primefaces&amp;v=8.0&amp;v=8.0" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/fileupload/fileupload.css.seam?ln=primefaces&amp;v=8.0&amp;v=8.0" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/stylesheet/material/material.indigo-blue.min.css.seam?op_v=1764007904708" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/stylesheet/material/public_theme.css.seam?op_v=1764007904708" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/stylesheet/theme.css.seam?op_v=1764007904708" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/stylesheet/style_new.css.seam?op_v=1764007904708" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/stylesheet/disciplines.css.seam?op_v=1764007904708" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/font-awesome/4.7.0/css/font-awesome.min-jsf.css.seam?ln=webjars" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/stylesheet/quill-custom-styles.css.seam?op_v=1764007904708" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/stylesheet/high-contrast.css.seam?op_v=1764007904708" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/mdl-ext/0.17.1/lib/mdl-ext-eqjs.min.css.seam?ln=webjars" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/stylesheet/top-menu.css.seam?op_v=1764007904708" /><link rel="stylesheet" type="text/css" href="/javax.faces.resource/stylesheet/author-profile.css.seam?op_v=1764007904708" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Profil osoby – Mariusz Pleszczyński – Politechnika Śląska
+        </title>
+        <meta name="description" content="" />
+        <link rel="shortcut icon" href="/favicon.ico?v=2" />
+        
+
+        
+
+
+        
+        
+
+<style>
+  * {
+    font-family: "Barlow Semi Condensed", "Lato", sans-serif;
+  }
+
+  body {
+    background-color: #ffffff;
+  }
+
+  /* blurry img fix */
+
+  #top-header img {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -ms-transform: translateZ(0); /* IE 9 */
+    -webkit-transform: translateZ(0); /* Chrome, Safari, Opera */
+    transform: translateZ(0);
+  }
+
+  #topHamburgerMenuButton {
+    margin-left: auto;
+  }
+  .omega-top-menu.is-small-menu.show-hamburger-menu #omega-top-main-menu-list {
+    width: fit-content;
+    margin-left: auto;
+  }
+  .omega-top-menu.is-small-menu.show-hamburger-menu {
+    display: flex;
+  }
+  .is-small-menu .hamburger-menu-holder {
+    position: absolute;
+    top: 0;
+    right: -50px;
+  }
+  #omega-top-main-menu-list {
+    text-align: right;
+  }
+  .menu-logo-holder {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  .menu-logo-holder img {
+    max-height: 65px;
+  }
+  .menu-logo-holder a:last-child img {
+    max-height: 50px;
+  }
+
+  .header-grid .header-grid-content {
+    background-color: transparent;
+  }
+  .global-stats-icon {
+    color: #154c8d;
+  }
+  .header_title,
+  .header_subtitle,
+  .fa-chevron-down,
+  .fa-search,
+  .global_search_criteria_btn,
+  .ui-inputfield,
+  .ui-inputfield::placeholder {
+    color: #183557;
+  }
+  .header_title {
+    font-size: 40px;
+    padding: 20px 0;
+  }
+  .header_subtitle {
+    font-size: 20px;
+  }
+
+  .startPage .cards section {
+    padding: 50px 0;
+  }
+
+  .header-grid-content .search_bar {
+    border-bottom: 2px solid #183557;
+  }
+  #top-header {
+    background-color: #154c8d;
+    color: #ffffff;
+    min-height: 95px;
+    height: 95px;
+  }
+  .mdl-layout__header-row__content .centered-layout-box {
+    align-self: flex-end;
+    margin: 0;
+    margin-left: auto;
+    height: 100%;
+  }
+
+  #top-header .centered-layout-box {
+    margin-left: 0;
+  }
+
+  .mdl-layout__header-row__content {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+  }
+  .omega-top-menu button.navigation-button,
+  .omega-top-menu a.navigation-link {
+    color: #ffffff !important;
+    transition: color 0.2s;
+  }
+  .omega-top-menu button.navigation-button:hover,
+  .omega-top-menu a.navigation-link:hover {
+    color: #fbba00 !important;
+  }
+
+  #top-header .omega-top-menu {
+    min-width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 50px;
+  }
+  .omega-top-menu + .mdl-layout-spacer {
+    margin: 0;
+    flex-grow: 0;
+  }
+
+  #top-header .mdl-layout__header-row {
+    height: 100%;
+    padding-right: 80px;
+    position: relative;
+  }
+  .startPage
+    .cards
+    .open-access-and-novelties-card
+    .open-access-and-novelties-subsection,
+  .startPage .cards .open-access-and-novelties-card .section-header {
+    background-color: #154c8d;
+    color: #ffffff;
+  }
+  .startPage .cards .open-access-and-novelties-card .section-header::after {
+    background-color: #fbba00;
+  }
+  .startPage .cards .section-header::after {
+    background-color: #183557;
+  }
+  .startPage
+    .cards
+    .open-access-and-novelties-card
+    .open-access-and-novelties-subsection
+    .section-grid-global-stats {
+    background-color: transparent;
+  }
+  ul.discipline-cards li.discipline-card a {
+    background-color: #e4ecf3;
+    height: 90px;
+    color: #154c8d;
+    border: none;
+    text-align: left;
+    font-weight: 500;
+    padding-left: 20px;
+    transition: color 0.2s, background-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  ul.discipline-cards li.discipline-card a::after {
+    display: block;
+    content: "";
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url("https://www.polsl.pl/wp-content/plugins/ps-add/images/arr-right-blue.svg");
+    transition: transform 0.2s;
+  }
+  ul.discipline-cards li.discipline-card a:hover::after {
+    background-image: url("https://www.polsl.pl/wp-content/plugins/ps-add/images/arr-right-orange.svg");
+    transform: translateX(10px);
+  }
+  ul.discipline-cards li.discipline-card a:hover {
+    background-color: #154c8d;
+    color: #ffffff;
+  }
+  ul.discipline-cards {
+    grid-column-gap: 80px;
+  }
+  .cards .snow-color {
+    background-color: #ffffff !important;
+  }
+  .section-grid-global-stats {
+    background-color: transparent;
+  }
+
+  .mdl-layout__header-row__content .centered-layout-box {
+    position: static;
+  }
+  .main-footer {
+    background-color: #e5e7e8;
+  }
+  .grid-holder {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 80px;
+  }
+  .grid-item {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #a7b2bc;
+    padding: 40px 0;
+    margin-bottom: 20px;
+  }
+  .grid-item:first-of-type a img {
+    width: 25px;
+  }
+  .grid-item > * {
+    margin: 25px 0 0 0;
+  }
+  .grid-item a:hover {
+    text-decoration: underline;
+  }
+  .footerMainContent,
+  .footerMainContent .powered-by-container {
+    background-color: #e5e7e8;
+  }
+  #main-footer .img-holder a {
+    margin-right: 30px;
+    border-bottom: none;
+  }
+  #main-footer a,
+  #main-footer h5,
+  #main-footer p {
+    border-bottom: none;
+    font-size: 16px;
+    color: #183557;
+  }
+  #main-footer .grid-holder > a img {
+    margin-right: 10px;
+  }
+  #main-footer .newsletter {
+    border: 1px solid #183557;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 15px;
+    font-size: 26px;
+    position: relative;
+  }
+  #main-footer .newsletter:hover {
+    text-decoration: none;
+  }
+  #main-footer .newsletter::after {
+    display: inline-block;
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 25px;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url("https://www.polsl.pl/wp-content/themes/politechnika-v2/assets/images/nl-arrow.svg");
+    transition: transform 0.2s;
+  }
+  #footer-links *,
+  .footer-copyright a {
+    color: #183557 !important;
+  }
+
+  @media (max-width: 1500px) {
+    .menu-logo-holder {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .menu-logo-holder a:last-of-type {
+      margin-left: 10px;
+    }
+    #top-header {
+      min-height: 130px;
+    }
+  }
+  @media (max-width: 1259px) {
+    #main-footer {
+      padding-left: 20px;
+    }
+    .grid-holder:first-of-type {
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 50px;
+    }
+  }
+  @media (max-width: 720px) {
+    #main-footer .grid-holder {
+      grid-template-columns: repeat(1, 1fr);
+      grid-column-gap: 0;
+    }
+    .grid-holder > a {
+      margin-bottom: 20px;
+    }
+  }
+  .is-small-menu #omega-top-main-menu-list * {
+    color: #183557 !important;
+  }
+  @media (max-width: 575px) {
+    .search_bar .iicomp-autocomplete-component {
+      border-bottom: 2px solid #183557;
+    }
+    .header-grid-content .search_bar {
+      border-bottom: none;
+    }
+  }
+  .header_title_holder .searchHeader,
+  .search_bar a.advancedSearchButton,
+  .search_bar .clearSearchButton,
+  .header-grid-content .messageHelpIcon {
+    color: #183557;
+  }
+</style><script>
+    //<![CDATA[
+        window.omegaI18n = function (key, defaultMsg) {
+            return window.omegaI18n.data[key] || defaultMsg || key;
+        }
+
+        window.omegaI18n.localizedText = function (valuePL, valueEN) {
+            if(true) {
+                return valuePL || valueEN;
+            }
+            return valueEN || valuePL;
+        }
+
+        window.omegaI18n.data = {};
+    //]]></script><script>
+        //<![CDATA[
+            window.omegaI18n.data['wcag.targetblank.explanation'] = 'Otwiera się w nowej karcie';
+        //]]></script><script>
+        //<![CDATA[
+            window.omegaI18n.data['wcag.contextChange.explanation'] = 'Zmiana widoku kontekstu strony';
+        //]]></script><script>
+        //<![CDATA[
+            window.omegaI18n.data['dialog.maximize'] = 'Maksymalizuj';
+        //]]></script><script>
+        //<![CDATA[
+            window.omegaI18n.data['resultList.pagination'] = 'Paginacja';
+        //]]></script><script>
+        //<![CDATA[
+            window.omegaI18n.data['generic.frontend.view_expired'] = 'Widok jest nieaktualny';
+        //]]></script><script>
+        //<![CDATA[
+            window.omegaI18n.data['generic.frontend.exception'] = 'Błąd serwera';
+        //]]></script><script>
+        //<![CDATA[
+            window.omegaI18n.data['generic.frontend.wrong_query'] = 'Prawdopodobnie wpisano niepoprawny znak, sprawdź treść zapytania';
+        //]]></script></head><body class="publicTemplate anonymousUser wcag-full-compliance" style="position: relative;" onload="checkTopMenu(); postParent()">
+
+
+
+        <div class="omega-main-layout-wrapper">
+
+            <ul class="omega-skip-link-list">
+                <li>
+                    <a href="#top-main-menu-header" class="omega-skip-main" onclick="$('#top-main-menu-header').focus()" tabindex="0">Przejdź do menu głównego</a>
+                </li>
+                <!--<li>
+                    <a href="#top-user-setting-header" class="omega-skip-main" onclick="$('#top-user-setting-header').focus()" tabindex="0">Przejdź do ustawień</a>
+                </li>-->
+                <li>
+                    <a href="#omega-maincontent" class="omega-skip-main" onclick="$('#omega-maincontent').focus();" tabindex="0">Przejdź do głównej zawartości</a>
+                </li>
+            </ul>
+            <div class="mdl-layout mdl-layout--fixed-header with-top-banner ">
+                <header class="main-layout-flex-fill" id="omega-main-header">
+                    <h1 class="visuallyhidden mainPageHeading" id="omegaMainPageHeading">
+                        <span class="main-heading-placeholder"><span lang="pl" class="affiliationName">Baza wiedzy: Politechnika Śląska</span>
+                        </span>
+                    </h1>
+                    <div class="mdl-layout__header-row user-setting-top-menu-wrapper">
+                        <div class="mdl-layout__header-row__content ">
+                            <div class="centered-layout-box"><div id="messages"></div>
+                                <div class="mdl-layout-spacer"></div>
+                                <div class="user-setting-top-menu">
+    <h2 class="visuallyhidden" id="top-user-setting-header">Ustawienia i Twoje konto</h2>
+    <ul class="unstyled-list user-settings-menu-list">
+            <li>
+                <button id="omega-font-size-default-button" data-size="default" class="iconCommandButton navigation-button  omega-font-size-change-button">
+                    <span class="visuallyhidden">domyślna czcionka</span>
+                    <span aria-hidden="true">A</span>
+                </button><div id="j_id_21" class="ui-tooltip ui-widget ui-tooltip-bottom" role="tooltip"><div class="ui-tooltip-arrow"></div><div class="ui-tooltip-text ui-shadow ui-corner-all">domyślna czcionka</div></div>
+            </li>
+            <li>
+                <button id="omega-font-size-bigger-button" data-size="bigger" class="iconCommandButton navigation-button omega-font-size-change-button">
+                    <span class="visuallyhidden">większa czcionka</span>
+                    <span aria-hidden="true">A</span>
+                </button><div id="j_id_23" class="ui-tooltip ui-widget ui-tooltip-bottom" role="tooltip"><div class="ui-tooltip-arrow"></div><div class="ui-tooltip-text ui-shadow ui-corner-all">większa czcionka</div></div>
+            </li>
+            <li>
+                <button id="omega-font-size-big-button" data-size="big" class="iconCommandButton navigation-button  omega-font-size-change-button">
+                    <span class="visuallyhidden">największa czcionka</span>
+                    <span aria-hidden="true">A</span>
+                </button><div id="j_id_25" class="ui-tooltip ui-widget ui-tooltip-bottom" role="tooltip"><div class="ui-tooltip-arrow"></div><div class="ui-tooltip-text ui-shadow ui-corner-all">największa czcionka</div></div>
+            </li><li>
+            <button id="omega-contrast-mode-toggle-button" class="navigation-button mdl-button mdl-button--icon omega-contrast-mode-toggle-button">
+                <span id="menu-contrast-change-help-span-value" class="visuallyhidden">
+                    Wysoki kontrast
+                </span>
+                <span class="high-contrast-text">
+                <i class="fa fa-fw fa-adjust" aria-hidden="true"></i>
+                </span>
+                <span class="normal-contrast-text">
+                    <span class="material-icons" aria-hidden="true">tonality</span>
+                </span>
+            </button><div id="j_id_29" class="ui-tooltip ui-widget omega-contrast-mode-toggle-button-tooltip ui-tooltip-bottom" role="tooltip"><div class="ui-tooltip-arrow"></div><div class="ui-tooltip-text ui-shadow ui-corner-all">
+                <span class="high-contrast-text">
+                    Wysoki kontrast
+                </span>
+                <span class="normal-contrast-text">
+                    Domyślny kontrast
+                </span></div></div></li>
+            <li id="topMenuLanguageChangeMenuItem"><a href="/info/author/PSLfbceab3a89be48df8040dc9b2a4fc071?r=author&amp;ps=20&amp;tab=&amp;lang=en&amp;title=Profil%2Bosoby%2B%25E2%2580%2593%2BMariusz%2BPleszczy%25C5%2584ski%2B%25E2%2580%2593%2BPolitechnika%2B%25C5%259Al%25C4%2585ska&amp;pn=1&amp;cid=581432" id="j_id_2b_3" class="changeLanguageLink">
+                        <span class="visuallyhidden"><span lang="en">Change language to: English</span><span lang="pl">Zmień język na: Angielski</span> 
+
+                    </span><img src="/javax.faces.resource/img/flags/en.svg.seam" alt="" style="height:16px" aria-hidden="true" /></a><div id="j_id_2b_e" class="ui-tooltip ui-widget omega-language-button-tooltip ui-tooltip-bottom" role="tooltip"><div class="ui-tooltip-arrow"></div><div class="ui-tooltip-text ui-shadow ui-corner-all">Zmień język na angielski</div></div>
+
+            </li><li><a href="/info/author/PSLfbceab3a89be48df8040dc9b2a4fc071?r=author&amp;ps=20&amp;CasAuthentication=true&amp;tab=&amp;lang=pl&amp;title=Profil%2Bosoby%2B%25E2%2580%2593%2BMariusz%2BPleszczy%25C5%2584ski%2B%25E2%2580%2593%2BPolitechnika%2B%25C5%259Al%25C4%2585ska&amp;pn=1" id="menumyLoginPId" title="Zmiana widoku kontekstu strony">Zaloguj się</a></li>
+
+    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="mdl-layout__header mdl-layout__header--scroll" id="top-header">
+                            <div class="mdl-layout__header-row">
+                                <div class="mdl-layout__header-row__content">
+                                    <div class=" centered-layout-box">
+  <style>
+    .editor-template #top-header .menu-logo-holder {
+      display: none;
+    }
+  </style>
+
+  <nav class="mdl-navigation omega-top-menu">
+    <div class="menu-logo-holder">
+      <a href="/index.seam" class="not-normal-link">
+          <img src="/docstore/download.seam?fileId=PSLf1a957afb48a4db1ae128ae099ebce64" alt="university logo" />
+      </a>
+      <a href="https://www.polsl.pl/idub/" class="not-normal-link">
+          <img src="/docstore/download.seam?fileId=PSLd80fa8344cb04d57a1a874d40deb3f46" alt="research university logo" />
+      </a>
+    </div>
+
+    <div class="hamburger-menu-holder">
+      <h2 class="visuallyhidden" id="top-main-menu-header" tabindex="-1">
+        Menu główne
+      </h2><button name="j_id_3l_3_1_e" type="submit" id="topHamburgerMenuButton" class="navigation-button">
+        <span class="material-icons menu_closed" aria-hidden="true">menu</span>
+        <span class="material-icons menu_open" aria-hidden="true">menu_open</span>
+        <span class="visuallyhidden">Menu główne</span></button>
+
+
+    <ul class="menu-item-as-list-ul main-menu-list" id="omega-top-main-menu-list">
+    <li class="menu-item-as-list-li">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/index.seam?lang=pl" id="pageLink-WUT688d08252a3c4ef192caf1aeb5512637" target="_self" class="navigation-link startMenuItem">
+                <span class="visuallyhidden hidden-label">Start</span>
+                <i role="presentation" aria-hidden="true" class="fa fa-fw fa-home"></i><div id="j_id_3l_3_1_i_0_1_1_3_1_3_2_5" class="ui-tooltip ui-widget ui-tooltip-left" role="tooltip"><div class="ui-tooltip-arrow"></div><div class="ui-tooltip-text ui-shadow ui-corner-all">Start</div></div></a>
+    </li>
+
+
+
+
+    <li class="menu-item-as-list-li">
+        <button id="button-WUT2472506d6ab0407593cbf80242d2cd72" class="navigation-button mdlext-js-collapsible">
+            Naukowcy
+            <i class="material-icons" role="presentation" aria-hidden="true">arrow_drop_down</i>
+        </button>
+        <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect " data-mdl-for="button-WUT2472506d6ab0407593cbf80242d2cd72">
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/author?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-WUTe51cbb41eba64291822eec786efe18d7" target="_self" class="mdl-navigation__link ">Profile</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --> <!--FIXME--><a href="/search-expert?lang=pl" id="pageLink-WUT3cf6d6e87bc241368cb8ba7611405052" target="_self" class="mdl-navigation__link ">Eksperci</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/team?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-WUTc3484337ce1d4614a480b5cc8978dc00" target="_self" class="mdl-navigation__link ">Zespoły badawcze</a>
+    </li>
+        </ul>
+    </li>
+
+
+
+
+    <li class="menu-item-as-list-li">
+        <button id="button-WUT2139cdec2d274551a9bca4a9353bfae1" class="navigation-button mdlext-js-collapsible">
+            Zasoby nauki
+            <i class="material-icons" role="presentation" aria-hidden="true">arrow_drop_down</i>
+        </button>
+        <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect " data-mdl-for="button-WUT2139cdec2d274551a9bca4a9353bfae1">
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/publication?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-WUT569af6ab7ae34624b1b004c642762179" target="_self" class="mdl-navigation__link ">Publikacje</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/artwork?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-WUT04b2ff29a0694d91ae764094b66dc6c5" target="_self" class="mdl-navigation__link ">Dzieła</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/researchdata?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-WUT82cddca18d56448785147fbee720d6fe" target="_self" class="mdl-navigation__link ">Dane badawcze</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/media?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-WUT9a4af2b89e2d4631a856e66a494ddb0a" target="_self" class="mdl-navigation__link ">Multimedia</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/phd?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-WUT77eae720851949d4bbad4a2d6e49a9d5" target="_self" class="mdl-navigation__link ">Doktoraty</a>
+    </li>
+        </ul>
+    </li>
+
+
+
+
+    <li class="menu-item-as-list-li">
+        <button id="button-WUT42142823ed2041ddb4e4eab0c3163620" class="navigation-button mdlext-js-collapsible">
+            Potencjał badawczy
+            <i class="material-icons" role="presentation" aria-hidden="true">arrow_drop_down</i>
+        </button>
+        <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect " data-mdl-for="button-WUT42142823ed2041ddb4e4eab0c3163620">
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/patent?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-WUTae7debe75cbd488ea187b87ca4ab4197" target="_self" class="mdl-navigation__link ">Patenty</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/projectmain?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-WUT005f7a9d14e847c58d1bde0f71420324" target="_self" class="mdl-navigation__link ">Projekty</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/product?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-PSL2916c14c9f734b779e1d40fc38913a43" target="_self" class="mdl-navigation__link ">Produkty</a>
+    </li>
+        </ul>
+    </li>
+
+
+
+
+    <li class="menu-item-as-list-li">
+        <button id="button-WUTdd21e14b037d4eebb3df57c1ddd30fd2" class="navigation-button mdlext-js-collapsible">
+            Upowszechnianie nauki
+            <i class="material-icons" role="presentation" aria-hidden="true">arrow_drop_down</i>
+        </button>
+        <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect " data-mdl-for="button-WUTdd21e14b037d4eebb3df57c1ddd30fd2">
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/organizedconference?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-WUTc2e6ea26799944149fa62dbe7b3f953c" target="_self" class="mdl-navigation__link ">Organizowane konferencje</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/ownedjournal?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-WUT718726a7e8ff47b6b6a4b35b7a7d3f5b" target="_self" class="mdl-navigation__link ">Czasopisma własne (wydawane przez instytucję)</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/event?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-WUT055dcb99a8b74cdb9da8639fcb2a7b04" target="_self" class="mdl-navigation__link ">Wydarzenia</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/press?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-WUTf607344c68dd4fa3ac441a2f7eea2f0a" target="_self" class="mdl-navigation__link ">Doniesienia medialne</a>
+    </li>
+        </ul>
+    </li>
+
+
+
+
+    <li class="menu-item-as-list-li">
+        <button id="button-WUT7644a8a6143e4e5fb4e35fde7fa336cc" class="navigation-button mdlext-js-collapsible">
+            Więcej
+            <i class="material-icons" role="presentation" aria-hidden="true">arrow_drop_down</i>
+        </button>
+        <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect " data-mdl-for="button-WUT7644a8a6143e4e5fb4e35fde7fa336cc">
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --> <!--FIXME--><a href="/cooperation.seam?tab=internalCooperation&amp;lang=pl" id="pageLink-WUTe32895e0450747939c2d41104ddf96b6" target="_self" class="mdl-navigation__link ">Współpraca</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/achievement?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-WUT2d23b816c8d7417ea9642b8db4abb4bb" target="_self" class="mdl-navigation__link ">Osiągnięcia</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/activity?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="pageLink-WUT9d8f9cc6a1fc41f6bed42e22bfe80959" target="_self" class="mdl-navigation__link ">Aktywności</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --> <!--FIXME--><a href="/affStats.seam?lang=pl" id="pageLink-WUT666c3ee73c234dc2a0ab55018c5c27de" target="_self" class="mdl-navigation__link ">Analizy</a>
+    </li>
+        </ul>
+    </li>
+
+
+
+
+    <li class="menu-item-as-list-li">
+        <button id="button-WUT85cb5b16bc3e4536963275e554a7926b" class="navigation-button mdlext-js-collapsible">
+            O Bazie Wiedzy
+            <i class="material-icons" role="presentation" aria-hidden="true">arrow_drop_down</i>
+        </button>
+        <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect " data-mdl-for="button-WUT85cb5b16bc3e4536963275e554a7926b">
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --> <!--FIXME--><a href="/about/site.seam?lang=pl" id="pageLink-WUT9eae61c73bfb4fb4974eb0ccf7410a97" target="_self" class="mdl-navigation__link ">O witrynie</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --> <!--FIXME--><a href="/rodo/site.seam?lang=pl" id="pageLink-PSL46c413e4f75c4174b4ffa9ea230abe01" target="_self" class="mdl-navigation__link ">Klauzula RODO</a>
+    </li>
+    <li class="mdl-menu__item">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --> <!--FIXME--><a href="/about/open-science.seam?lang=pl" id="pageLink-WUT496c897975d64efdb1658f5701dc91c7" target="_self" class="mdl-navigation__link ">Otwartość w nauce</a>
+    </li>
+        </ul>
+    </li>
+
+    </ul>
+    </div>
+  </nav>
+  <div class="mdl-layout-spacer"></div>
+
+  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div><div id="breadCrumbId" class="breadCrumb">
+        <p>Jesteś tutaj:</p>
+        <ul class="breadCrumbItems unstyled-inline-list">
+            <li><a href="/index.seam?lang=pl" id="j_id_3m_4" class="unstyled-link">
+                    <span>Start</span></a>
+            </li>
+        <!--
+                 
+         -->
+                <li>
+    <li class="">Naukowcy
+    </li>
+                </li>
+                <li>
+    <li class="">
+
+    <!--
+        ui:param:
+            pagelink
+            message
+            linkIcon
+       --><a href="/search/author?actionMethod=info.xhtml%3AsimpleSearchView.clearSearch%28%29&amp;t=simple&amp;showRel=false&amp;lang=pl" id="breadcrumb-pageLink-WUTe51cbb41eba64291822eec786efe18d7" target="_self" class="unstyled-link ">Profile</a>
+    </li>
+                </li><li><span><span lang="pl" class="authorName">Dr inż. </span>Mariusz Pleszczyński
+
+
+  </span></li>
+        </ul></div>
+                        </div>
+
+                </header>
+
+                <main class="mdl-layout__content main-layout-flex-fill" id="omega-maincontent" tabindex="-1">
+
+                    <!-- <ui:include src="/layout/status.xhtml"/>  -->
+                    <div class="mdl-grid  centered-layout-box main-layout-grid">
+
+
+                        <div class="mdl-cell mdl-cell--12-col main-layout-grid-cell">
+                            <div>
+	
+	
+	<div id="baner">
+	</div>
+                            </div>
+                            <div>
+        <a href="javascript: previousPage(1)">
+            Powrót
+        </a>
+        <hr /><div id="infoPageContainer" class="infoPageContainer authorInfoPageContainer"><form id="j_id_3x_1_1_1" name="j_id_3x_1_1_1" method="post" action="/info.seam?cid=581432" enctype="application/x-www-form-urlencoded">
+        <!--update="search"--><input type="hidden" name="j_id_3x_1_1_1_SUBMIT" value="1" /><input type="hidden" name="javax.faces.ViewState" id="j_id__v_0:javax.faces.ViewState:1" value="N75fXMWJcflrvsHCKhA6b53J3ZN2nGJ5fHzoeYSLZvY6OM/p" autocomplete="off" /></form>
+    <div id="authorPublicRowTemplatePanel" class="authorPublicRowTemplate "><div class="headingWithHelp infoHeadingWithHelp"><h2 id="h_PSLfbceab3a89be48df8040dc9b2a4fc071" class="infoProfileHeader">Profil osoby</h2><button id="messageHelpContainer_authorprofile_help" name="messageHelpContainer_authorprofile_help" class=" iconCommandButton messageHelpContainer" type="button" aria-controls="messageHelpTooltipContent_authorprofile_help" data-message-key="authorprofile.help" tabindex="0" aria-expanded="false"><span class="ui-button-text ui-c">
+            <span class="fa fa-fw fa-question-circle messageHelpIcon" aria-hidden="true"></span>
+            <span class="visuallyhidden">Pomoc</span></span></button><div id="j_id_3x_1_1_8_3_4_4" class="ui-overlaypanel ui-widget ui-widget-content ui-overlay-hidden ui-corner-all ui-shadow messageHelpOverlayPanel" data-widget-war="messageHelp_authorprofile_help"><div class="ui-overlaypanel-content">
+            <div class="messageHelpOverlayContent" id="messageHelpTooltipContent_authorprofile_help" tabindex="-1"><p class="helpContainerHeader">Pomoc w zakresie funkcji na profilu naukowca:</p> <ol> <li> <a href="https://omega-psir.atlassian.net/wiki/spaces/OM/pages/16220587/" target="_blank">Ogólna informacja o profilu naukowca <span class="sr-only">Otwiera się w nowej karcie</span> </a> </li> <li> <a href="https://omega-psir.atlassian.net/wiki/spaces/OM/pages/16253048/" target="_blank">Funkcje dostępne dla użytkownika niezalogowanego <span class="sr-only">Otwiera się w nowej karcie</span></a></li> <li> <a href="https://omega-psir.atlassian.net/wiki/spaces/OM/pages/1367867393/" target="_blank">Informacje o ORCID <span class="sr-only">Otwiera się w nowej karcie</span></a> </li> <li> <a href="https://omega-psir.atlassian.net/wiki/spaces/OM/pages/6503137281/" target="_blank">Wnioski o nagrody <span class="sr-only">Otwiera się w nowej karcie</span></a> </li> </ol>
+            </div></div></div></div><div id="topInfoPanel" class="author-profile__top-info-panel " vocab="http://schema.org/" typeof="Person">
+        <div class="top-info-panel__no-map-grid">
+            <div>
+                <div class="top-info-panel__top-bar">
+                    <div class="top-info-panel__picture-with-basic-info-card"><div id="authorProfilePicturePanel" class="authorPublicImage authorProfilePicturePanel"><img src="/javax.faces.resource/img/usericon2.png.seam" alt="Mariusz Pleszczyński - Brak zdjęcia - obrazek zastępczy z symboliczną sylwetką osoby" /></div><div id="authorProfileBasicInfoPanel" class="authorProfileBasicInfoPanel top-info-panel__basic-info-panel" role="region" aria-label="Wizytówka">
+
+                            <p class="author-profile__name-panel"><span lang="pl" property="honorificPrefix">Dr inż. </span>Mariusz Pleszczyński
+                            </p>
+                            <div class="authorContactInfoPanel"><div class="possitionAndFunctionInfo"><p class="possitionInfo"><span lang="pl" class="authorAffil">Adiunkt</span></p></div>
+        <ul class="unstyled-list authorAffilList" title="Afiliacja">
+            <li class="authorAffil">
+
+	<span class="authorAffil"><a href="/info/affiliation/PSL542ad26cbe554fa5992e8db79765cdcc?r=author&amp;ps=20&amp;tab=&amp;title=Department+of+Mathematical+Methods+in+Technology+and+Computer+Science&amp;lang=pl&amp;pn=1&amp;cid=581432" id="j_id_3x_1_1_8_4_1h_2_2" title="Profil jednostki"><span lang="pl">Katedra Metod Matematycznych w Technice i Informatyce</span></a>
+
+	</span>
+            </li>
+                    <li class="authorAffil">
+
+	<span class="authorAffil"><a href="/info/affiliation/PSL37bda014615e48a89246a7fa11a3c5f8?r=author&amp;ps=20&amp;tab=&amp;title=Faculty+of+Applied+Mathematics&amp;lang=pl&amp;pn=1&amp;cid=581432" id="j_id_3x_1_1_8_4_1h_6_4_2" title="Profil jednostki"><span lang="pl">Wydział Matematyki Stosowanej</span></a>
+			<a class="iconLink" href="https://www.polsl.pl/rms/"><i class="actionLinksImage fa fa-fw fa-external-link-square"><span class="visuallyhidden" style="color: black">Strona domowa: Wydział Matematyki Stosowanej</span> </i></a>
+
+	</span>
+                    </li>
+        </ul>
+                                <div class="authorDetailedContactInfo">
+                                    <dl>
+                                            <dt>Email</dt>
+                                            <dd property="email">
+
+<a id="authorDetailedContactInfo-PSLfbceab3a89be48df8040dc9b2a4fc071-em"></a>
+
+                                            </dd>
+                                    </dl>
+
+                                </div>
+                            </div></div>
+                    </div>
+                </div>
+            </div>
+        </div></div><div class="infoTabs" role="tablist"><a href="/info/author/PSLfbceab3a89be48df8040dc9b2a4fc071?r=author&amp;tab=main&amp;title=Profil%2Bosoby%2B%25E2%2580%2593%2BMariusz%2BPleszczy%25C5%2584ski%2B%25E2%2580%2593%2BPolitechnika%2B%25C5%259Al%25C4%2585ska&amp;lang=pl&amp;pn=1" id="j_id_3x_1_1_8_5_2:0:j_id_3x_1_1_8_5_3" class="mdl-js-button mdl-js-ripple-effect  infoTabActive" aria-selected="true" role="tab" tabindex="0">Profil</a><a href="/info/author/PSLfbceab3a89be48df8040dc9b2a4fc071?r=author&amp;tab=publications&amp;title=Profil%2Bosoby%2B%25E2%2580%2593%2BMariusz%2BPleszczy%25C5%2584ski%2B%25E2%2580%2593%2BPolitechnika%2B%25C5%259Al%25C4%2585ska&amp;lang=pl&amp;pn=1" id="j_id_3x_1_1_8_5_2:1:j_id_3x_1_1_8_5_3" class="mdl-js-button mdl-js-ripple-effect  infoTab" aria-selected="false" role="tab" tabindex="-1">Publikacje</a><a href="/info/author/PSLfbceab3a89be48df8040dc9b2a4fc071?r=author&amp;tab=activity&amp;title=Profil%2Bosoby%2B%25E2%2580%2593%2BMariusz%2BPleszczy%25C5%2584ski%2B%25E2%2580%2593%2BPolitechnika%2B%25C5%259Al%25C4%2585ska&amp;lang=pl&amp;pn=1" id="j_id_3x_1_1_8_5_2:2:j_id_3x_1_1_8_5_3" class="mdl-js-button mdl-js-ripple-effect  infoTab" aria-selected="false" role="tab" tabindex="-1">Aktywności</a><a href="/info/author/PSLfbceab3a89be48df8040dc9b2a4fc071?r=author&amp;tab=achievement&amp;title=Profil%2Bosoby%2B%25E2%2580%2593%2BMariusz%2BPleszczy%25C5%2584ski%2B%25E2%2580%2593%2BPolitechnika%2B%25C5%259Al%25C4%2585ska&amp;lang=pl&amp;pn=1" id="j_id_3x_1_1_8_5_2:3:j_id_3x_1_1_8_5_3" class="mdl-js-button mdl-js-ripple-effect  infoTab" aria-selected="false" role="tab" tabindex="-1">Osiągnięcia</a><a href="/info/author/PSLfbceab3a89be48df8040dc9b2a4fc071?r=author&amp;tab=metrics&amp;title=Profil%2Bosoby%2B%25E2%2580%2593%2BMariusz%2BPleszczy%25C5%2584ski%2B%25E2%2580%2593%2BPolitechnika%2B%25C5%259Al%25C4%2585ska&amp;lang=pl&amp;pn=1" id="j_id_3x_1_1_8_5_2:4:j_id_3x_1_1_8_5_3" class="mdl-js-button mdl-js-ripple-effect  infoTab" aria-selected="false" role="tab" tabindex="-1">Cytowania</a><a href="/info/author/PSLfbceab3a89be48df8040dc9b2a4fc071?r=author&amp;tab=stats&amp;title=Profil%2Bosoby%2B%25E2%2580%2593%2BMariusz%2BPleszczy%25C5%2584ski%2B%25E2%2580%2593%2BPolitechnika%2B%25C5%259Al%25C4%2585ska&amp;lang=pl&amp;pn=1" id="j_id_3x_1_1_8_5_2:5:j_id_3x_1_1_8_5_3" class="mdl-js-button mdl-js-ripple-effect  infoTab" aria-selected="false" role="tab" tabindex="-1">Statystyki</a><a href="/info/author/PSLfbceab3a89be48df8040dc9b2a4fc071?r=author&amp;tab=cooperation&amp;title=Profil%2Bosoby%2B%25E2%2580%2593%2BMariusz%2BPleszczy%25C5%2584ski%2B%25E2%2580%2593%2BPolitechnika%2B%25C5%259Al%25C4%2585ska&amp;lang=pl&amp;pn=1" id="j_id_3x_1_1_8_5_2:6:j_id_3x_1_1_8_5_3" class="mdl-js-button mdl-js-ripple-effect  infoTab" aria-selected="false" role="tab" tabindex="-1">Współpraca</a></div><div id="authorInfoPanel" class="authorPublicTemplate"><div class="tabContentPanel">
+        <h3 class="visuallyhidden">Profil</h3>
+        <div><form id="authorInfoPanelForm" name="authorInfoPanelForm" method="post" action="/info.seam?cid=581432" class="mainTabContent author-profile__main-tab-grid" enctype="application/x-www-form-urlencoded">
+        <div class="main-tab-grid__left-column"><div id="authorContactInfoPanel" class="authorContactInfoPanel">
+
+    <div class="authorContactInfoSection ">
+        <h4 class="visuallyhidden">Kontakty</h4>
+
+        <ul class="ul-element-wcag authorContactInfoSectionList">
+        </ul>
+
+    </div></div><div id="authorInfoTextWrapper" class="authorInfoTextWrapper"></div>
+
+            <div>
+        <div class="researchFieldsPanel">
+            <h4>Obszary badawcze</h4>
+            <dl>
+        <dt>Dyscyplina naukowa (Ustawa 2.0): 
+        </dt>
+        <dd>
+                <ul class="ul-element-wcag">
+                        <li class="li-element-wcag-inline"><span id="j_id_3x_1_1_8_7_3_44_y_8_2:0:idpg0" class="inline-element"><span class="authorSimple">informatyka techniczna i telekomunikacja (ITT)</span></span>: 100% N
+                        </li>
+                </ul>
+        </dd>
+            </dl>
+        </div>
+            </div>
+        </div><div id="j_id_3x_1_1_8_7_3_48" class="ui-outputpanel ui-widget main-tab-grid__right-column"><div class="ui-outputpanel-loading ui-widget"></div></div><input type="hidden" name="authorInfoPanelForm_SUBMIT" value="1" /><input type="hidden" name="javax.faces.ViewState" id="j_id__v_0:javax.faces.ViewState:2" value="N75fXMWJcflrvsHCKhA6b53J3ZN2nGJ5fHzoeYSLZvY6OM/p" autocomplete="off" /></form><div id="logInToEditProfileModalPanel" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-shadow ui-hidden-container logInToEditProfileModalPanel"><div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top"><div id="logInToEditProfileModalPanel_title" class="ui-dialog-title">
+            <h1 class="logInToEditProfileModalPanelHeader" tabindex="-1">Włącz edycję swojego profilu
+            </h1></div><a href="#" class="ui-dialog-titlebar-icon ui-dialog-titlebar-close ui-corner-all" aria-label="Close"><span class="ui-icon ui-icon-closethick"></span></a></div><div class="ui-dialog-content ui-widget-content" id="logInToEditProfileModalPanel_content"><form id="j_id_3x_1_1_8_7_3_83_6" name="j_id_3x_1_1_8_7_3_83_6" method="post" action="/info.seam?cid=581432" enctype="application/x-www-form-urlencoded"><div id="logInToEditProfileModalPanel_contentPanel" style="position: relative; min-height:100px;"><div class="mb-4">
+                    <p>
+                        Zaloguj się, aby uzyskać więcej możliwości
+                    </p></div></div><input type="hidden" name="j_id_3x_1_1_8_7_3_83_6_SUBMIT" value="1" /><input type="hidden" name="javax.faces.ViewState" id="j_id__v_0:javax.faces.ViewState:3" value="N75fXMWJcflrvsHCKhA6b53J3ZN2nGJ5fHzoeYSLZvY6OM/p" autocomplete="off" /></form></div></div>
+        </div></div></div>
+        <!--
+            
+        --><div id="customFeedbackPopup" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-shadow ui-hidden-container customFeedbackPopup customFeedbackPopup"><div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top"><span id="customFeedbackPopup_title" class="ui-dialog-title">Zgłoś usunięcie ORCID</span><a href="#" class="ui-dialog-titlebar-icon ui-dialog-titlebar-close ui-corner-all" aria-label="Close"><span class="ui-icon ui-icon-closethick"></span></a></div><div class="ui-dialog-content ui-widget-content" id="customFeedbackPopup_content"><form id="j_id_3x_1_1_8_9_3" name="j_id_3x_1_1_8_9_3" method="post" action="/info.seam?cid=581432" class="userfeedbackEditForm customUserfeedbackEditForm" enctype="application/x-www-form-urlencoded"><input type="hidden" name="j_id_3x_1_1_8_9_3_SUBMIT" value="1" /><input type="hidden" name="javax.faces.ViewState" id="j_id__v_0:javax.faces.ViewState:4" value="N75fXMWJcflrvsHCKhA6b53J3ZN2nGJ5fHzoeYSLZvY6OM/p" autocomplete="off" /></form></div></div><div id="profilePhotoAUthorStatementDialogWrapper" class="profilePhotoAUthorStatementDialogWrapper"></div></div><a href="http://europepmc.org/search?query=%28AUTHORID%3A%220000-0002-4971-5360%22%29" target="_blank" style="display:none" property="seeAlso rdfs:seeAlso">http://europepmc.org/search?query=%28AUTHORID%3A%220000-0002-4971-5360%22%29</a><a href="https://search.crossref.org/?q=0000-0002-4971-5360" target="_blank" style="display:none" property="seeAlso rdfs:seeAlso">https://search.crossref.org/?q=0000-0002-4971-5360</a><a href="https://ludzie.nauka.gov.pl/ln/profiles/38PaMmhU0Fv/" target="_blank" style="display:none" property="seeAlso rdfs:seeAlso">https://ludzie.nauka.gov.pl/ln/profiles/38PaMmhU0Fv/</a><form id="j_id_3x_1_5" name="j_id_3x_1_5" method="post" action="/info.seam?cid=581432" enctype="application/x-www-form-urlencoded"><div id="j_id_3x_1_6" class="ui-panelgrid ui-widget layoutGridAsTable mt-4"><div id="j_id_3x_1_6_content" class="ui-panelgrid-content ui-widget-content ui-grid ui-grid-responsive"><div class="ui-g"><div class="ui-panelgrid-cell editValueSmall null"><button id="refreshViewCacheButton" name="refreshViewCacheButton" class=" iconCommandButton clearCacheCommandButton" onclick="PrimeFaces.ab({s:&quot;refreshViewCacheButton&quot;,f:&quot;j_id_3x_1_5&quot;,onco:function(xhr,status,args,data){location.reload(true);}});return false;" type="submit"><span class="ui-button-text ui-c">
+                                <span class="visuallyhidden">Odśwież stronę</span>
+                                <i class="fa fa-refresh  fa-fw" aria-hidden="true"></i></span></button><div id="j_id_3x_1_h" class="ui-tooltip ui-widget ui-tooltip-right" role="tooltip"><div class="ui-tooltip-arrow"></div><div class="ui-tooltip-text ui-shadow ui-corner-all">Odśwież stronę</div></div></div><div class="ui-panelgrid-cell null"><a href="https://omega.polsl.pl/seam/resource/rest/accesspoint/rdf/jsonld/PSLfbceab3a89be48df8040dc9b2a4fc071" id="rdfLink" name="rdfLink" class="iconLink"><div id="j_id_3x_1_k" class="ui-tooltip ui-widget ui-tooltip-bottom" role="tooltip"><div class="ui-tooltip-arrow"></div><div class="ui-tooltip-text ui-shadow ui-corner-all">RDF</div></div><img src="/javax.faces.resource/img/rdf/rdf_flyer.svg.seam" alt="RDF" class="actionLinksImage" /></a></div></div></div></div><input type="hidden" name="j_id_3x_1_5_SUBMIT" value="1" /><input type="hidden" name="javax.faces.ViewState" id="j_id__v_0:javax.faces.ViewState:5" value="N75fXMWJcflrvsHCKhA6b53J3ZN2nGJ5fHzoeYSLZvY6OM/p" autocomplete="off" /></form>
+                <div class="recordUriContainer">
+                    <hr />
+                    <dl>
+                        <dt>Jednolity identyfikator zasobu</dt>
+                        <dd>https://omega.polsl.pl/info/author/PSLfbceab3a89be48df8040dc9b2a4fc071/</dd>
+                    </dl>
+                </div>
+                <div class="recordUriContainer">
+                    <dl>
+                        <dt>URN</dt>
+                        <dd><code>urn:psl-prod:PSLfbceab3a89be48df8040dc9b2a4fc071</code></dd>
+                    </dl>
+                </div>
+		<hr />
+            <hr style="clear:both;" class="mt-3" />
+            <p class="paragraphTextContent"><span class="reference">* Podane wartości <a href="http://pl.wikipedia.org/wiki/Indeks_H" target="blank">indeksu Hirscha<span class="sr-only">Otwiera się w nowej karcie</span></a> oraz inne miary bibliometryczne są przybliżone. Zostały one obliczone w systemie Repozytorium w oparciu o zarejestrowane publikacje naukowca (z uwzględnieniem autocytowań) oraz analizę informacji dostępnych w Internecie. W przypadku zaniżonej wartości, którejkolwiek z miar, należy przede wszystkim zadbać o kompletność danych w Repozytorium. Zalogowany i uprawniony użytkownik może też skorzystać z nowych narzędzi synchronizacji z zewnętrznymi bazami danych (np. <a href="http://www.scopus.com" target="blank">Scopus<span class="sr-only">Otwiera się w nowej karcie</span></a>).</span>
+            </p>
+
+
+        <hr style="clear:both" /><div id="j_id_53" class="ui-panelgrid ui-widget layoutGridAsTable mt-4"><div id="j_id_53_content" class="ui-panelgrid-content ui-widget-content ui-grid ui-grid-responsive"><div class="ui-g"><div class="ui-panelgrid-cell editValueSmall null">
+        				<a href="javascript: previousPage(1)" style="float:left">
+            				Powrót
+        				</a></div><div class="ui-panelgrid-cell null"></div><div class="ui-panelgrid-cell null"></div><div class="ui-panelgrid-cell null"></div></div></div></div></div>
+    <style>
+        #a2a-kit-toggle-button {
+            width: 32px;
+            height: 32px;
+            border: none;
+            margin: 4px;
+            box-sizing: border-box;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        #a2a-kit-toggle-button.collapse {
+            transform: rotate(90deg);
+        }
+    </style>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </main>
+                <footer class="footerMainContent">
+                    <div class="mdl-cell mdl-cell--12-col powered-by-container">
+                        <div>
+        <div id="powered" class="poweredBy wrapper_center">
+		<div id="main-footer">
+			<div class="grid-holder">
+				<div class="grid-item">
+					<h5 class="footer-heading">Politechnika Śląska</h5>
+					<p>ul. Akademicka 2A, 44-100 Gliwice</p>
+					<a href="tel:322371000"><img src="https://www.polsl.pl/wp-content/uploads/2021/03/z416-300x300.png" alt="Phone icon" />32 237 10 00</a>
+					<p>Fax: 32 237 16 55</p>
+					<p>NIP: 631-020-07-36</p>
+					<p>REGON: 000001637</p>
+				</div>
+				<div class="grid-item">
+					<a href="https://www.polsl.pl/idub/">Uczelnia Badawcza</a>
+					<a href="https://www.polsl.pl/uczelnia/administracja/">Administracja PŚ</a><a href="https://www.polsl.pl/ia1-dzpiz/">Zamówienia publiczne</a><a href="https://www.polsl.pl/rd1-cos/uczelnia-bez-barier/">Politechnika bez barier</a>
+					<a href="https://www-arch.polsl.pl/Jednostki/RJO2-WPS/Strony/witamy.aspx">Wydawnictwo PŚ</a><a href="https://www.polsl.pl/rjo1-bps/">Biblioteka PŚ</a>
+					<a href="https://www.polsl.pl/ro4-bks/">Biuro Karier Studenckich</a><a href="https://www.polsl.pl/ri3-bp/">Biuro Promocji</a>
+					<a href="https://bip.polsl.pl/Praca/Forms/AllItems.aspx">Oferty pracy</a>
+				</div>
+				<div class="grid-item">
+					<h5 class="footer-heading">Social media</h5>
+					<div class="img-holder">
+						<a href="https://twitter.com/Politechnika"><img src="https://www.polsl.pl/wp-content/themes/politechnika-v2/assets/images/twitter.svg" alt="Twitter logo" /></a>
+						<a href="https://pl.linkedin.com/school/politechnika-%C5%9Bl%C4%85ska-w-gliwicach/"><img src="https://www.polsl.pl/wp-content/themes/politechnika-v2/assets/images/linkedin.svg" alt="Linkedin logo" /></a>
+						<a href="https://www.facebook.com/PolitechnikaSlaska/"><img src="https://www.polsl.pl/wp-content/themes/politechnika-v2/assets/images/fb.svg" alt="Facebook logo" /></a>
+						<a href="https://www.instagram.com/politechnika_slaska/"><img src="https://www.polsl.pl/wp-content/themes/politechnika-v2/assets/images/instagram.svg" alt="Instagram logo" /></a>
+						<a href="https://www.youtube.com/user/PolitechnikaSlaska"><img src="https://www.polsl.pl/wp-content/themes/politechnika-v2/assets/images/yt.png" alt="Youtube logo" /></a>
+						<a href="https://www.snapchat.com/add/politechnikasl"><img src="https://www.polsl.pl/wp-content/themes/politechnika-v2/assets/images/a.png" alt="Snapchat logo" /></a>
+					</div>
+					<h5 class="footer-heading">Media Politechniki Śląskiej</h5>
+					<div class="img-holder">
+						<a href="https://www.youtube.com/channel/UCvMR32wTpA9R6ci0n9weMdA"><img src="https://www.polsl.pl/wp-content/themes/politechnika-v2/assets/images/tv-ico.svg" alt="Youtube channel logo" /></a>
+						<a href="https://www.polsl.pl/rr8-brpr/biuletyn-politechniki-slaskiej/"><img src="https://www.polsl.pl/wp-content/themes/politechnika-v2/assets/images/b-ico.svg" alt="Bulletin logo" /></a>
+					</div>
+					<a href="https://euslugi.polsl.pl/Newsletter/Newsletter/Zapisz" class="newsletter">Newsletter</a>
+				</div>
+			</div>
+			<div class="grid-holder">
+				<a href="https://www.polsl.pl/hrps/"><img src="https://www.polsl.pl/wp-content/themes/politechnika-v2/assets/images/hr.png" alt="hr logo" />HR Excellence in Research</a>
+				<a href="https://bip.polsl.pl/"><img src="https://www.polsl.pl/wp-content/themes/politechnika-v2/assets/images/bip.png" alt="bip logo" />Biuletyn Informacji Publicznych</a>
+				<a href="https://www.polsl.pl/inwestycje-dotowane-z-budzetu-panstwa/"><img src="https://www.polsl.pl/wp-content/themes/politechnika-v2/assets/images/idbp.png" alt="Flag of Poland" />Inwestycje dotowane z budżetu Państwa</a>
+			</div>
+		</div>
+
+		<h2 class="visuallyhidden">Dodatkowe informacje</h2>
+		<div class="footer-links" id="footer-links">
+			<ul>
+				<li><a href="/openAccess.seam?lang=pl&amp;cid=581092" id="bottomLinkOpenAccessId">Otwarty Dostęp</a>
+				</li>
+				<li><a href="/api.seam?lang=pl&amp;cid=581092" id="bottomLinkApiId">API</a>
+				</li>
+				<li><a href="/about/regulations.seam?lang=pl&amp;cid=581092" id="bottomLinkRegulations">Regulamin</a>
+				</li>
+				<li><a href="/fiveStarData.seam?lang=pl&amp;cid=581092" id="bottomLink5StarId"><span lang="en">5* Open Data</span></a>
+				</li>
+				<li><a href="/sitemap?lang=pl&amp;cid=581092" id="bottomLinkSiteMapId">Mapa strony</a>
+				</li>
+				<li>
+					<a href="https://omega-psir.atlassian.net/wiki/spaces/OM/overview?homepageId=557186" target="_blank">Pomoc</a>
+				</li>
+				<li><a href="/contact.seam?lang=pl&amp;cid=581092" id="bottomLinkContactId">Kontakt</a>
+				</li>
+			</ul>
+		</div>
+		<h2 class="visuallyhidden">Partnerzy</h2>
+		<div class="footer-grid"></div>
+		<p class="footer-text"></p>
+
+            <div class="footer-copyright">
+                <a href="http://omegapsir.io">© 2025 Obsługiwany przez Omega-PSIR</a><img src="/javax.faces.resource/img/omega-logo.svg.seam" alt="Omega-PSIR logo" class="footer-copyright__image" />
+            </div>
+
+        </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <div id="j_id_66"></div><span id="growlMessages"></span>
+
+        
+        <form id="j_id_6a" name="j_id_6a" method="post" action="/info.seam?cid=581432" enctype="application/x-www-form-urlencoded"><input type="hidden" name="j_id_6a_SUBMIT" value="1" /><input type="hidden" name="javax.faces.ViewState" id="j_id__v_0:javax.faces.ViewState:6" value="N75fXMWJcflrvsHCKhA6b53J3ZN2nGJ5fHzoeYSLZvY6OM/p" autocomplete="off" /></form><div id="j_id_6c" class="ui-confirm-dialog ui-dialog ui-widget ui-widget-content ui-corner-all ui-shadow ui-hidden-container confirmDialog"><div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top"><span id="j_id_6c_title" class="ui-dialog-title">Potwierdzenie</span></div><div class="ui-dialog-content ui-widget-content" id="j_id_6c_content"><span class="ui-icon ui-confirm-dialog-severity"></span><span class="ui-confirm-dialog-message">Czy jesteś pewien?</span></div><div class="ui-dialog-buttonpane ui-dialog-footer ui-widget-content ui-helper-clearfix"><button id="j_id_6d" name="j_id_6d" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-confirmdialog-yes" type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-check fa-fw"></span><span class="ui-button-text ui-c">Tak</span></button><button id="j_id_6e" name="j_id_6e" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-confirmdialog-no" type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-close fa-fw"></span><span class="ui-button-text ui-c">Anuluj</span></button></div></div>
+        <!--
+            
+        --><div id="feedbackPopup" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-shadow ui-hidden-container"><div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top"><span id="feedbackPopup_title" class="ui-dialog-title">Zgłoszenie uwag dotyczących tej strony</span><a href="#" class="ui-dialog-titlebar-icon ui-dialog-titlebar-close ui-corner-all" aria-label="Close"><span class="ui-icon ui-icon-closethick"></span></a></div><div class="ui-dialog-content ui-widget-content" id="feedbackPopup_content"><form id="userfeedbackEditForm" name="userfeedbackEditForm" method="post" action="/info.seam?cid=581432" class="userfeedbackEditForm" enctype="application/x-www-form-urlencoded"><input type="hidden" name="userfeedbackEditForm_SUBMIT" value="1" /><input type="hidden" name="javax.faces.ViewState" id="j_id__v_0:javax.faces.ViewState:7" value="N75fXMWJcflrvsHCKhA6b53J3ZN2nGJ5fHzoeYSLZvY6OM/p" autocomplete="off" /></form></div></div><div id="clipboardPopup" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-shadow ui-hidden-container"><div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top"><div id="clipboardPopup_title" class="ui-dialog-title">
+            Schowek
+        </div><a href="#" class="ui-dialog-titlebar-icon ui-dialog-titlebar-close ui-corner-all" aria-label="Close"><span class="ui-icon ui-icon-closethick"></span></a></div><div class="ui-dialog-content ui-widget-content" id="clipboardPopup_content"><form id="clipboardContent" name="clipboardContent" method="post" action="/info.seam?cid=581432" enctype="application/x-www-form-urlencoded"><button id="refreshClipboardButton" name="refreshClipboardButton" class=" iconCommandButton" onclick="PrimeFaces.ab({s:&quot;refreshClipboardButton&quot;,f:&quot;clipboardContent&quot;,u:&quot;clipboardContent&quot;});return false;" type="submit"><span class="ui-button-text ui-c">
+                <span class="visuallyhidden">Odśwież schowek</span>
+                <i class="fa fa-refresh  fa-fw" aria-hidden="true"></i></span></button><div id="j_id_6m" class="ui-tooltip ui-widget ui-tooltip-right" role="tooltip"><div class="ui-tooltip-arrow"></div><div class="ui-tooltip-text ui-shadow ui-corner-all">Odśwież schowek</div></div>
+
+            <div class="mt-3"><a id="j_id_75" href="#" class="ui-commandlink ui-widget iconLink" onclick="PrimeFaces.ab({s:&quot;j_id_75&quot;,f:&quot;clipboardContent&quot;,u:&quot;clipboardList&quot;});return false;">
+                    <i class="actionLinksImage fa fa-fw fa-remove" aria-hidden="true"></i>
+                    <span class="visuallyhidden">Usuń wszystko</span></a>
+            </div><input type="hidden" name="clipboardContent_SUBMIT" value="1" /><input type="hidden" name="javax.faces.ViewState" id="j_id__v_0:javax.faces.ViewState:8" value="N75fXMWJcflrvsHCKhA6b53J3ZN2nGJ5fHzoeYSLZvY6OM/p" autocomplete="off" /></form></div></div><script type="text/javascript" src="/javax.faces.resource/jquery/jquery.js.seam?ln=primefaces&amp;v=8.0&amp;v=8.0"></script><script type="text/javascript" src="/javax.faces.resource/jquery/jquery-plugins.js.seam?ln=primefaces&amp;v=8.0&amp;v=8.0"></script><script type="text/javascript" src="/javax.faces.resource/core.js.seam?ln=primefaces&amp;v=8.0&amp;v=8.0"></script><script type="text/javascript" src="/javax.faces.resource/components.js.seam?ln=primefaces&amp;v=8.0&amp;v=8.0"></script><script type="text/javascript" src="/javax.faces.resource/primefaces-extensions.js.seam?ln=primefaces-extensions&amp;v=8.0.5"></script><script type="text/javascript" src="/javax.faces.resource/texteditor/texteditor.js.seam?ln=primefaces&amp;v=8.0&amp;v=8.0"></script><script type="text/javascript" src="/javax.faces.resource/touch/touchswipe.js.seam?ln=primefaces&amp;v=8.0&amp;v=8.0"></script><script type="text/javascript" src="/javax.faces.resource/fileupload/fileupload.js.seam?ln=primefaces&amp;v=8.0&amp;v=8.0"></script><script type="text/javascript" src="/javax.faces.resource/material-design-lite/1.3.0/material.min.js.seam?ln=webjars"></script><script type="text/javascript" src="/javax.faces.resource/script/wcagFixes.js.seam?op_v=1764007904708"></script><script type="text/javascript" src="/javax.faces.resource/js-cookie/3.0.5/dist/js.cookie.min.js.seam?ln=webjars"></script><script type="text/javascript" src="/javax.faces.resource/jsf.js.seam?ln=javax.faces"></script><script type="text/javascript" src="/javax.faces.resource/json3/3.3.3/lib/json3.min.js.seam?ln=webjars"></script><script type="text/javascript" src="/javax.faces.resource/es5-shim/4.6.7/es5-shim.min.js.seam?ln=webjars"></script><script type="text/javascript" src="/javax.faces.resource/es5-shim/4.6.7/es5-sham.min.js.seam?ln=webjars"></script><script type="text/javascript" src="/javax.faces.resource/es6-shim/0.35.8/es6-shim.min.js.seam?ln=webjars"></script><script type="text/javascript" src="/javax.faces.resource/mathjax.js.seam?ln=script"></script><script type="text/javascript" src="/javax.faces.resource/mathjax/3.2.2/es5/tex-svg.js.seam?ln=webjars"></script><script type="text/javascript" src="/layout/utils.js"></script><script type="text/javascript" src="/javax.faces.resource/d3/3.5.17/d3.min.js.seam?ln=webjars"></script><script type="text/javascript" src="/javax.faces.resource/d3-cloud/1.2.7/build/d3.layout.cloud.js.seam?ln=webjars"></script><script type="text/javascript" src="/javax.faces.resource/script/jquery.slimscroll.min.js.seam?op_v=1764007904708"></script><script type="text/javascript" src="/javax.faces.resource/script/jquery.mark.min.js.seam?op_v=1764007904708"></script><script type="text/javascript" src="/javax.faces.resource/script/high-contrast.js.seam?op_v=1764007904708"></script><script type="text/javascript" src="/javax.faces.resource/mdl-ext/0.17.1/lib/mdl-ext.min.js.seam?ln=webjars"></script><script type="text/javascript" src="/javax.faces.resource/what-input/5.2.12/dist/what-input.min.js.seam?ln=webjars"></script><script type="text/javascript" src="/javax.faces.resource/clamp-js/0.7.0/clamp.js.seam?ln=webjars"></script><script type="text/javascript" src="/javax.faces.resource/script/author-profile.js.seam?op_v=1764007904708"></script><script type="text/javascript" src="/javax.faces.resource/script/d3-utils.js.seam?op_v=1764007904708"></script><script id="65361aab-4d43-4279-b81a-bdc7d56b43d1" type="text/javascript">var pf=window.PrimeFaces;if(pf){pf.settings.locale='pl';pf.settings.partialSubmit=true;};
+
+            window.highContrastSpanValue="Wysoki kontrast";
+            window.normalContrastSpanValue="Domyślny kontrast";
+        ;
+//<![CDATA[
+        //
+        var domain = 'omega.polsl.pl';
+        window.omegaCurrentLanguage = 'pl';
+        //
+        //]]>;
+//<![CDATA[
+        //
+        function checkTopMenu() {
+            var topHeader = document.getElementById('top-header');
+            var topBanner = document.getElementById('top-banner');
+            if (top !== self) {
+                jQuery(".mdl-layout").addClass("is-nested");
+                if(topBanner){
+                    topBanner.style.display = "none";
+                }
+            }
+
+        }
+
+        checkTopMenu();
+
+        //]]>;
+//<![CDATA[//]]>;
+pf.cw("Tooltip","widget_j_id_21",{id:"j_id_21",showEffect:"fade",hideEffect:"fade",target:"@(#omega\-font\-size\-default\-button)",position:"bottom"});
+pf.cw("Tooltip","widget_j_id_23",{id:"j_id_23",showEffect:"fade",hideEffect:"fade",target:"@(#omega\-font\-size\-bigger\-button)",position:"bottom"});
+pf.cw("Tooltip","widget_j_id_25",{id:"j_id_25",showEffect:"fade",hideEffect:"fade",target:"@(#omega\-font\-size\-big\-button)",position:"bottom"});
+pf.cw("Tooltip","widget_j_id_29",{id:"j_id_29",showEffect:"fade",hideEffect:"fade",target:"@(#omega\-contrast\-mode\-toggle\-button)",position:"bottom",styleClass:"omega\-contrast\-mode\-toggle\-button\-tooltip"});
+pf.cw("Tooltip","widget_j_id_2b_e",{id:"j_id_2b_e",showEffect:"fade",hideEffect:"fade",target:"@(.changeLanguageLink)",position:"bottom",styleClass:"omega\-language\-button\-tooltip"});
+wordCloudClickHandle = function(param1,tab,template) {pf.ab({s:"j_id_3x_1_1_3",f:"j_id_3x_1_1_1",p:"j_id_3x_1_1_3",params:[{name:'j_id_3x_1_1_3_param1',value:param1},{name:'j_id_3x_1_1_3_tab',value:tab},{name:'j_id_3x_1_1_3_template',value:template}]});};
+//<![CDATA[
+        function wordCloudClick(word){
+            wordCloudClickHandle(word);
+
+        }
+    //]]>;
+pf.cw("CommandButton","widget_messageHelpContainer_authorprofile_help",{id:"messageHelpContainer_authorprofile_help"});
+pf.cw("OverlayPanel","messageHelp_authorprofile_help",{id:"j_id_3x_1_1_8_3_4_4",target:"messageHelpContainer_authorprofile_help",hideEffect:"fade",onShow:function(){document.getElementById('messageHelpTooltipContent_authorprofile_help').focus()},onHide:function(){document.getElementById('messageHelpContainer_authorprofile_help').focus()}});
+//<![CDATA[//
+//
+  var datax=[["p","z","y","s","u","l","i","k","a","s","e",".","i","p","r","l",".","l","m","z","z","s","c","#","n","l","o","s","p"],[8,14,15,5,4,23,19,18,1,17,10,26,3,21,2,25,7,9,0,6,12,11,13,20,16,28,22,24,27]];
+  var first=datax[0];
+  var second=datax[1];
+  var field=document.getElementById("authorDetailedContactInfo-PSLfbceab3a89be48df8040dc9b2a4fc071-em");
+  field.id += Math.random();
+  var res=[];
+  for (var i = 0; i < second.length; i++) {
+	  var let=first[i];
+	  if (let=='#') let='@';
+	  res[second[i]]=let;
+
+	}
+  for (var i = 0; i < res.length; i++) {
+  	field.innerHTML+=res[i];
+  	
+  }
+  field.href="mailto:"+field.innerHTML;
+//
+
+////]]>;
+pf.cw("OutputPanel","widget_j_id_3x_1_1_8_7_3_48",{id:"j_id_3x_1_1_8_7_3_48",deferred:true,deferredMode:"load"});
+pf.cw("Dialog","logInToEditProfileModalPanel",{id:"logInToEditProfileModalPanel",modal:true,minWidth:400,appendTo:"@(body)",closeOnEscape:true,onHide:function(){$('.logInToEditProfileButton').focus();},onShow:function(){$('.logInToEditProfileModalPanelHeader').focus();}});
+pf.cw("Dialog","customFeedbackPopup",{id:"customFeedbackPopup",modal:true,appendTo:"@(body)",position:"center, 100",closeOnEscape:true});
+pf.cw("CommandButton","widget_refreshViewCacheButton",{id:"refreshViewCacheButton"});
+pf.cw("Tooltip","widget_j_id_3x_1_h",{id:"j_id_3x_1_h",showEffect:"fade",hideEffect:"fade",target:"refreshViewCacheButton"});
+pf.cw("Tooltip","widget_j_id_3x_1_k",{id:"j_id_3x_1_k",showEffect:"fade",hideEffect:"fade",showDelay:500,target:"rdfLink",position:"bottom"});
+//<![CDATA[
+
+        try {
+            componentHandler.upgradeDom(); //prevents menu freezing while loading resources
+        } catch (e) {}
+
+        function handleJsfAjax(data) {
+            callOnAjaxEventCallbacks();
+            var status = data.status;
+            switch (status) {
+                case "begin":
+                    // This is the start of the AJAX request.
+
+                    break;
+
+                case "complete":
+                    break;
+
+                case "success":
+                    // This is invoked right after successful processing of AJAX response and update of HTML DOM.
+
+                    window.setTimeout(function () {
+                        componentHandler.upgradeDom();
+                        initFileDownloadEventHandler();
+                        initRightSidebarEventHandler();
+                        applyWcagFixes();
+                        postParent();
+                    }, 1);
+
+                    break;
+            }
+        }
+        jsf.ajax.addOnEvent(handleJsfAjax);
+
+        var onAjaxEventCallbacks = [];
+        function addOnAjaxEventCallback(callback) {
+            onAjaxEventCallbacks.push(callback)
+        }
+
+        function callOnAjaxEventCallbacks() {
+            onAjaxEventCallbacks.forEach(function(c){
+                c();
+            })
+        }
+
+        postParent();
+
+        function onElementHeightChange(elm, callback){
+            var lastHeight = elm.scrollHeight, newHeight;
+            (function run(){
+                newHeight = elm.scrollHeight;
+                if( lastHeight != newHeight )
+                    callback();
+                lastHeight = newHeight;
+
+                if( elm.onElementHeightChangeTimer )
+                    clearTimeout(elm.onElementHeightChangeTimer);
+
+                elm.onElementHeightChangeTimer = setTimeout(run, 200);
+            })();
+        }
+
+        onElementHeightChange(jQuery(".mdl-layout__content").get(0), function(){
+            postParent();
+        });
+
+        function postParent() {
+            if (top != self) {
+                cururl = window.location.href;
+                msg = '_#' + jQuery(".mdl-layout__content").get(0).scrollHeight + '_#' + cururl;
+                if (typeof(global_frame_scrolling) != 'undefined') {
+                    msg = msg + '_#' + global_frame_scrolling;
+                }
+                window.parent.postMessage(msg, '*');
+                //alert('MSG='+'_#'+msg);
+            }
+        }
+
+        //
+        //]]>;
+pf.cw("AjaxStatus","widget_j_id_66",{id:"j_id_66",delay:0,success:function(){handleJsfAjax({status: 'success'})}});
+pf.cw("Growl","growlWV",{id:"growlMessages",sticky:false,life:6000,escape:true,keepAlive:false,msgs:[]});
+//<![CDATA[
+        //
+        function onError(data) {
+            if(data && data.status === 0){ //request not  complete
+                console.log("ajax request not completed", "responseText: "+data.responseText );
+                return;
+            }
+            if(data && data.responseText && (data.responseText.indexOf("ViewExpiredException") !== -1 || data.responseText.indexOf("No saved view state could be found for the view") !== -1)){
+                onException(window.omegaI18n('generic.frontend.view_expired') , "warn", "");
+                setTimeout(function(){
+                    location.reload();
+                }, 3000);
+            }else{
+                onException(window.omegaI18n('generic.frontend.exception'), "error", window.omegaI18n('generic.frontend.wrong_query'));
+            }
+        }
+        function onException(summary, severity, detail) {
+            if(!severity){
+                severity = "warn"
+            }
+            PF('growlWV').renderMessage({
+                "summary":summary,
+                "detail": detail,
+                "severity":severity
+            });
+        }
+
+        jsf.ajax.addOnError(onError)
+        $(document).on("pfAjaxError", function(event, xhr, options) {
+            onError(xhr)
+        });
+
+        //]]>;
+
+            initAjaxRequestProgressListeners();
+        ;
+pf.cw("Poll","widget_j_id_6a_j_id_6b",{id:"j_id_6a:j_id_6b",frequency:240,autoStart:true,fn:function(){pf.ab({s:"j_id_6a:j_id_6b",f:"j_id_6a"});}});
+pf.cw("CommandButton","widget_j_id_6d",{id:"j_id_6d"});
+pf.cw("CommandButton","widget_j_id_6e",{id:"j_id_6e"});
+pf.cw("ConfirmDialog","widget_j_id_6c",{id:"j_id_6c",showEffect:"fade",hideEffect:"fade",closeOnEscape:true,global:true,responsive:true});
+pf.cw("Dialog","feedbackPopup",{id:"feedbackPopup",modal:true,appendTo:"@(body)",position:"center, 100",closeOnEscape:true});
+updateClipboardContent = function() {pf.ab({s:"j_id_6g",u:"clipboardContent",pa:arguments[0]});};
+pf.cw("CommandButton","widget_refreshClipboardButton",{id:"refreshClipboardButton"});
+pf.cw("Tooltip","widget_j_id_6m",{id:"j_id_6m",showEffect:"fade",hideEffect:"fade",target:"refreshClipboardButton"});
+reRender = function() {pf.ab({s:"j_id_72",f:"clipboardContent"});};
+pf.cw("Dialog","clipboardPopup",{id:"clipboardPopup",modal:true,appendTo:"@(body)",position:"center, 100",closeOnEscape:true,onShow:function(){updateClipboardContent()}});if(window.$){$(PrimeFaces.escapeClientId("65361aab-4d43-4279-b81a-bdc7d56b43d1")).remove();}</script></body>
+    </html>
