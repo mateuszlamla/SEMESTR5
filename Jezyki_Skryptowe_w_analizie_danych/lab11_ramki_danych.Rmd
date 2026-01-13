@@ -1,0 +1,228 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+ZADANIE 1
+
+```{r}
+ceny <- read.csv("ceny.csv", sep = ';')
+head(ceny)
+
+srednie <- ceny %>%
+  summarise(
+    srednia_smieci = mean(wywoz_smieci, na.rm = TRUE),
+    srednia_prad = mean(energia_elektryczna, na.rm = TRUE)
+  )
+print(srednie)
+```
+
+```{r}
+min_max_prad <- ceny %>%
+  filter(
+    energia_elektryczna == max(energia_elektryczna) | 
+    energia_elektryczna == min(energia_elektryczna)
+  ) %>%
+  select(Nazwa, energia_elektryczna)
+
+print(min_max_prad)
+
+min_max_smieci <- ceny %>%
+  filter(
+    wywoz_smieci == max(wywoz_smieci) | 
+    wywoz_smieci == min(wywoz_smieci)
+  ) %>%
+  select(Nazwa, wywoz_smieci)
+           
+print(min_max_smieci)
+```
+
+```{r}
+dane_do_wykresu <- ceny %>%
+  filter(Nazwa %in% c('SLASKIE', 'MAZOWIECKIE')) %>%
+  pivot_longer(cols = c(wywoz_smieci, energia_elektryczna),
+               names_to = 'kategoria',
+               values_to = 'cena')
+print(dane_do_wykresu)
+
+plot1 = ggplot(dane_do_wykresu, aes(x = Nazwa, y = cena, fill = kategoria)) +
+  geom_bar(stat = 'identity', position = 'dodge') + 
+  labs(
+    title = 'Ceny w SLASKIM I MAZOWIECKIM',
+    y = 'Cena',
+    x = 'Wojewodztwo'
+  ) + 
+  theme_minimal()
+plot1
+```
+
+ZADANIE 2
+
+```{r}
+wodka <- read_excel('wódka.xlsx', sheet = 2, skip = 2)
+head(wodka)
+
+colnames(wodka) <- c('kod', 'wojewodztwo', 'cena_2021', 'cena_2022')
+wodka <- wodka %>%
+  mutate(
+    cena_2021 = as.numeric(gsub(",", ".", cena_2021)),
+    cena_2022 = as.numeric(gsub(",", ".", cena_2022))
+  )
+
+head(wodka)
+
+srednie <- wodka %>%
+  summarise(
+    srednia_2021 = mean(cena_2021, na.rm = TRUE),
+    srednia_2022 = mean(cena_2022, na.rm = TRUE)
+  )
+
+print(srednie)
+```
+
+```{r}
+najdrozej2021 <- wodka %>%
+  filter(
+    cena_2021 == max(cena_2021))
+print(najdrozej2021)
+```
+
+```{r}
+najdrozej2022 <- wodka %>%
+  filter(
+    cena_2022 == max(cena_2022))
+print(najdrozej2022)
+```
+
+```{r}
+wzrost = wodka %>%
+  mutate(
+    roznica = cena_2022 - cena_2021)
+
+max_wzrost = wzrost %>%
+  filter(
+    roznica == max(roznica)
+  )
+print(max_wzrost)
+```
+
+```{r}
+dane_do_wykresu = head(wodka, 5)
+dane_long = dane_do_wykresu %>%
+  pivot_longer(cols = c('cena_2021', 'cena_2022'),
+               names_to = 'Rok',
+               values_to = 'Cena')
+plot = ggplot(dane_long, aes(x = wojewodztwo, y = Cena, fill = Rok)) + 
+  geom_bar(stat = 'identity', position = 'dodge') + 
+  labs(title = 'Ceny wodki w 2021 i 2022 dla 5 województw', 
+       y = 'Cena',
+       x = 'Wojewodztwo') + 
+  theme_minimal()
+print(plot)
+```
+
+ZADANIE 3
+
+```{r}
+set.seed(123)
+
+plec = c(0,0,0,1,1,0,1,0,1,0,1,1,0,0,1,1,1)
+n = length(plec)
+
+df = data.frame(plec = plec)
+df$wzrost <- numeric(n)
+df$wzrost[df$plec == 0] = rnorm(sum(df$plec == 0), mean = 165, sd = 10)
+df$wzrost[df$plec == 1] = rnorm(sum(df$plec == 1), mean = 175, sd = 15)
+
+df$waga = 0.9 * (df$wzrost - 90)
+df$BMI = df$waga / (df$wzrost /100)^2
+
+print(df)
+```
+
+```{r}
+mean_bmi = mean(df$BMI)
+std_bmi = sd(df$BMI)
+
+print(mean_bmi)
+print(std_bmi)
+```
+
+```{r}
+df_przedzial = df %>%
+  filter(
+    BMI > (mean_bmi - std_bmi) & BMI < (mean_bmi + std_bmi)
+  )
+print(df_przedzial)
+```
+
+```{r}
+powyzej_sredniej = df %>%
+  filter(BMI > mean_bmi) %>%
+  group_by(plec) %>%
+  summarise(liczba = n())
+print(powyzej_sredniej)
+```
+
+```{r}
+max_bmi = df %>%
+  group_by(plec) %>%
+  filter(BMI == max(BMI))
+
+print(max_bmi)
+```
+
+```{r}
+srednie_statyst = df %>%
+  group_by(plec) %>%
+  summarise(
+    srednia_waga = mean(waga),
+    sredni_wzrost = mean(wzrost),
+    srednie_bmi = mean(BMI)
+  )
+print(srednie_statyst)
+```
+
+```{r}
+p1 = ggplot(
+  df, aes(x = plec, fill = factor(plec))) + 
+  geom_bar() +
+  labs(title = "Liczebność zbioru ze wzgledu na plec",
+       x = 'plec (0 - Kobieta, 1 - Mezczyzna)', 
+       y = 'liczebnosc') +
+  theme_minimal()
+print(p1)
+```
+
+```{r}
+p2 = ggplot(srednie_statyst, aes(x = plec, y = srednia_waga, fill = factor(plec)))+
+  geom_col() +
+  labs(title = "Srednia waga", 
+       x = 'plec (0 - Kobieta, 1 - Mezczyzna)',
+       y = 'waga') + 
+  theme_minimal()
+
+print(p2)
+```
+
+```{r}
+p3 = ggplot(srednie_statyst, aes(x = plec, y = sredni_wzrost, fill = factor(plec)))+
+  geom_col() + 
+  labs(title = "Sredni wzrost",
+       x = 'plec (0 - Kobieta, 1 - Mezczyzna)',
+       y = 'wzrost') + 
+  theme_minimal()
+
+print(p3)
+```
+
+```{r}
+p4 = ggplot(srednie_statyst, aes(x = plec, y = srednie_bmi, fill = factor(plec)))+
+  geom_col() + 
+  labs(title = "Srednie BMI",
+       x = 'plec (0 - Kobieta, 1 - Mezczyzna)',
+       y = 'BMI') + 
+  theme_minimal()
+
+print(p4)
+```
