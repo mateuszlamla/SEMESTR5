@@ -3,5 +3,22 @@
   <component name="Black">
     <option name="sdkName" value="C:\Users\lamla\miniconda3" />
   </component>
+<<<<<<< Updated upstream
   <component name="ProjectRootManager" version="2" project-jdk-name="C:\Users\lamla\miniconda3" project-jdk-type="Python SDK" />
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="SEMESTR5" project-jdk-type="Python SDK" />
+  <component name="RMarkdownSettings">
+    <option name="renderProfiles">
+      <map>
+        <entry key="file://$PROJECT_DIR$/Jezyki_Skryptowe_w_analizie_danych/lab11_ramki_danych.Rmd">
+          <value>
+            <RMarkdownRenderProfile>
+              <option name="outputDirectoryUrl" value="file://$PROJECT_DIR$/Jezyki_Skryptowe_w_analizie_danych" />
+            </RMarkdownRenderProfile>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+>>>>>>> Stashed changes
 </project>
