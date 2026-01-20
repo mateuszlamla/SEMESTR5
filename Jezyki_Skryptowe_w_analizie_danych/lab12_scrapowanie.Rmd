@@ -1,0 +1,120 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(rvest)
+library(stringr)
+```
+
+Zadanie 1
+
+```{r}
+url = "https://ms.polsl.pl/kmmti/pracownicy/"
+page = read_html(url)
+```
+
+```{r}
+raw_text <- page %>% 
+    html_nodes(".pracownik strong") %>% 
+    html_text()
+
+pracownicy = unlist(str_split(raw_text, "\n"))
+pracownicy = pracownicy[pracownicy != ""]
+print(pracownicy)
+```
+
+```{r}
+prof = grep("prof", pracownicy, ignore.case = TRUE)
+dr = grep("dr", pracownicy, ignore.case = TRUE)
+mgr = grep("mgr", pracownicy, ignore.case = TRUE)
+
+dr_only = setdiff(dr, prof)
+
+ilosc_prof = length(prof)
+ilosc_dr = length(dr_only)
+ilosc_mgr = length(mgr)
+
+df = data.frame(
+  Stanowisko = c("Profesorowie", "Doktorzy", "Magistrowie"),
+  Ilość = c(ilosc_prof, ilosc_dr, ilosc_mgr)
+)
+
+print(df)
+
+```
+
+Zadanie 2
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+url_main = "https://omega.polsl.pl/resultList.seam?aq=%40status%3APRACOWNIK*%2Cauthorprofile%2Fposition%2F%40namePL%3Aadiunkt%3Bauthorprofile%2F%40possitionPL%3Aadiunkt%2C%40active%3D%27true%27%2C%40virt_affiliation%3APSL542ad26cbe554fa5992e8db79765cdcc&q=&r=author&affil=&ps=20&t=snippet&showRel=false&lang=pl&pn=1"
+
+page = read_html(url_main)
+
+wiersze = page %>% html_nodes(".ui-dataview-row")
+
+
+nazwiska = c()
+linki = c()
+
+for (wiersz in wiersze) {
+  nazwisko = wiersz %>% 
+    html_node(".entity-row-title") %>%
+    html_text() %>%
+    str_squish()
+  
+  link = wiersz %>%
+    html_node("a.infoLink") %>%
+    html_attr("href")
+  
+  pelny_link = paste0("https://omega.polsl.pl", link)
+  
+  nazwiska = c(nazwiska, nazwisko)
+  linki = c(linki, pelny_link)
+}
+```
+
+```{r}
+pracownicy_df <- data.frame(
+  Nazwisko = nazwiska,
+  Url = linki,
+  Publikacje = 0,
+  stringsAsFactors = FALSE
+)
+print(pracownicy_df)
+```
+
+```{r}
+pobierz_publikacje = function(url){
+
+  profil_page = read_html(url)
+  
+  
+  tekst =  profil_page %>%
+    html_nodes(".achievementsPanel a") %>%
+    html_text()
+  
+  liczba = as.numeric(str_extract(tekst, "^\\d+"))
+    
+  print(liczba)
+  return(liczba)
+}
+```
+
+```{r}
+for (i in 1:nrow(pracownicy_df))
+{
+  pub_count = pobierz_publikacje(pracownicy_df$Url[i])
+  pracownicy_df$Publikacje[i] = pub_count
+}
+```
+
+```{r}
+print(pracownicy_df)
+```
