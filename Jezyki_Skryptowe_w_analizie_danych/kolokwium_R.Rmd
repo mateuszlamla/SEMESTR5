@@ -1,0 +1,152 @@
+---
+title: "Kolokwium R"
+output: html_notebook
+---
+
+# Kolokwium Języki Skryptowe w analizie danych - Język R
+
+## Mateusz Lamla
+
+```{r}
+library(ggplot2)
+library(tidyr)
+library(patchwork)
+library(rvest)
+library(stringr)
+library(tidyverse)
+library(janitor)
+library(lubridate)
+```
+
+### Zadanie 1
+
+```{r}
+df = read.csv('temperatura.csv')
+
+mean = mean(df$temperatura)
+median = median(df$temperatura)
+var = var(df$temperatura)
+std = sd(df$temperatura)
+
+print(mean)
+print(median)
+print(var)
+print(std)
+
+```
+
+```{r}
+more_than_22 = sum(df$temperatura > 22)
+
+print(more_than_22)
+
+```
+
+```{r}
+df_normalized = (df - mean) / std
+head(df_normalized)
+
+```
+
+### Zadanie 2
+
+```{r}
+sprzedaz = read.csv('sprzedaz.csv')
+print(sprzedaz)
+
+```
+
+```{r}
+sprzedaz$wartosc = sprzedaz$Cena * sprzedaz$Ilość
+
+head(sprzedaz)
+
+```
+
+```{r}
+sprzedaz <- sprzedaz[order(sprzedaz$Cena,decreasing = TRUE),]
+sprzedaz_top3_unit_price = sprzedaz[1:3,]
+print(sprzedaz_top3_unit_price)
+
+```
+
+```{r}
+sprzedaz <- sprzedaz[order(sprzedaz$wartosc,decreasing = TRUE),]
+sprzedaz_top3_value = sprzedaz[1:3,]
+print(sprzedaz_top3_value)
+
+```
+
+```{r}
+sprzedaz_grouped = sprzedaz %>% group_by(Kategoria) %>%
+  summarise(ilosc = sum(Ilość), 
+            srednia = mean(wartosc))
+
+print(sprzedaz_grouped)
+
+```
+
+```{r}
+library(pivottabler)
+
+
+pt = PivotTable$new()
+pt$addData(sprzedaz)
+pt$addColumnDataGroups("Kategoria")
+pt$addRowDataGroups("Miasto")
+pt$defineCalculation(calculationName = "SaleValue", summariseExpression="sum(wartosc)")
+pt$renderPivot()
+
+```
+
+```{r}
+sprzedaz <- sprzedaz[order(sprzedaz$wartosc,decreasing = TRUE),]
+top5_sprzedaz = sprzedaz[1:5,]
+
+ggplot(top5_sprzedaz, aes(x = top5_sprzedaz$Produkt, y= top5_sprzedaz$wartosc)) +
+  geom_col(fill="blue")
+```
+
+### Zadanie 3
+
+```{r}
+n = 20000
+x_rand = runif(n=n, min=-1, max = 1)
+y_rand = runif(n=n, min=-1, max = 1)
+
+inside_x = x_rand[x_rand**2 + y_rand**2 <= 1]
+inside_y = y_rand[x_rand**2 + y_rand**2 <= 1]
+
+outside_x = x_rand[x_rand**2 + y_rand**2 > 1]
+outside_y = y_rand[x_rand**2 + y_rand**2 > 1]
+
+approximate_pi = 4 * length(inside_x)/n
+print(approximate_pi)
+
+
+```
+
+```{r}
+library(ggplot2)
+
+points_df <- data.frame(
+  x = c(inside_x, outside_x),
+  y = c(inside_y, outside_y),
+  type = factor(c(rep("Inside Circle", length(inside_x)),
+                  rep("Outside Circle", length(outside_x))))
+)
+
+ggplot() +
+  geom_point(data = points_df, aes(x = x, y = y, color = type), alpha = 0.5, size = 2) +
+  scale_color_manual(values = c("Inside Circle" = "green",
+                                "Outside Circle" = "red")) +
+  coord_fixed() +
+  labs(x = "X", y = "Y", color = "") +
+  theme_minimal()
+
+```
+
+```{r}
+diff = abs(approximate_pi - pi)
+print(diff)
+```

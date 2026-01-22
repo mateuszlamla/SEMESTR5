@@ -1,0 +1,212 @@
+---
+title: "Projekt - Języki Skryptowe w Analizie Danych"
+output: html_document
+date: "2026-01-15"
+---
+
+## Analiza zbioru sprzedaży czekolady
+
+Jakub Darul, Mateusz Lamla
+
+### Wstęp
+
+Wybrany przez nas zbiór pochodzi ze strony <https://www.kaggle.com/datasets/saidaminsaidaxmadov/chocolate-sales>.
+
+Zbiór składa się z ponad 3 tysięcy rekordów i 6 kolumn: Sales Person, Country, Product, Date, Amount, Box Shipped.
+
+### Wczytanie zbioru
+
+```{r}
+df = read.csv("czeko.csv")
+```
+
+Wczytanie bibliotek oraz wyświetlenie paru pierwszych rekordów zbioru
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(lubridate)
+
+glimpse(df)
+```
+
+### Przygotowanie zbioru do analizy
+
+Zamiana typu kolumny 'Amount' na liczbową, zamiana daty na typ date, dodanie kolumn zawierających rok oraz miesiąc dla transakcji
+
+```{r}
+df <- df %>%
+  mutate(Amount = parse_number(Amount))
+df <- df %>%
+  mutate(Date = dmy(Date))
+df <- df %>%
+  mutate(
+    year = year(Date),
+    month = month(Date, label = TRUE))
+summary(df)
+```
+
+Sprawdzenie braków w zbiorze:
+
+```{r}
+sum(is.na(df))
+```
+
+Zamiana nazw kolumn na łatwiejsze do odwoływania w dalszej części
+
+```{r}
+df <- df %>%
+  clean_names()
+colnames(df)
+```
+
+### Analiza zbioru
+
+Wyświetlenie sprzedawców z największymi przychodami ze sprzedaży
+
+```{r}
+sales_person_stats <- df %>%
+  group_by(sales_person) %>%
+  summarise(
+    total_sales = sum(amount, na.rm = TRUE),
+    transactions_count = n(),
+  ) %>%
+  arrange(desc(total_sales))
+
+print(head(sales_person_stats, 10))
+```
+
+Wyświetlenie najchętniej kupowanego produktu w każdym z krajów w zbiorze
+
+```{r}
+top_product_per_country <- df %>%
+  count(country, product, name = "sales_count") %>%
+  group_by(country) %>%
+  slice_max(order_by = sales_count, n = 1) %>%
+  ungroup()
+
+print(top_product_per_country)
+```
+
+Wyświetlenie 3 najbardziej dochodowych produktów
+
+```{r}
+top3_profitable_products <- df %>%
+  group_by(product) %>%
+  summarise(total_revenue = sum(amount, na.rm = TRUE)) %>%
+  arrange(desc(total_revenue)) %>%
+  slice_head(n = 3)
+
+print(top3_profitable_products)
+```
+
+### Wizualizacja analizy zbioru
+
+Wykres sumy przychodów w każdym z miesięcy w zbiorze
+
+```{r}
+monthly_sales_trend <- df %>%
+  mutate(month_date = floor_date(date, unit = "month")) %>%
+  group_by(month_date) %>%
+  summarise(monthly_amount = sum(amount, na.rm = TRUE))
+
+ggplot(monthly_sales_trend, aes(x = month_date, y = monthly_amount)) +
+  geom_line(color = "grey") +
+  geom_point(color = "blue", size = 2) +
+  theme_minimal() +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  labs(
+    title = "Suma przychodów miesięcznych",
+    x = "Data (Miesiąc)",
+    y = "Miesięczna suma sprzedaży"
+  )
+```
+
+Wykres przedstawiający sumę wysłanych pudełek do każdego z państw w zbiorze danych
+
+```{r}
+boxes_by_country <- df %>%
+  group_by(country) %>%
+  summarise(total_boxes = sum(boxes_shipped, na.rm = TRUE))
+
+ggplot(boxes_by_country, aes(x = reorder(country, total_boxes), y = total_boxes)) +
+  geom_col(fill = "orange") +
+  coord_flip() +
+  theme_minimal() +
+  labs(
+    title = "Łączna liczba wysłanych pudełek pogrupowane państwami",
+    x = "Kraj",
+    y = "Liczba wysłanych pudełek"
+  )
+```
+
+Wykres przedstawiający łączne przychody na przestrzeni lat
+
+```{r}
+sales_per_year <- df %>%
+  group_by(year) %>%
+  summarise(total_amount = sum(amount, na.rm = TRUE))
+
+ggplot(sales_per_year, aes(x = factor(year), y = total_amount)) +
+  geom_bar(stat = "identity", fill = "forestgreen") +
+  theme_minimal() +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  labs(
+    title = "Całkowita wartość sprzedaży w poszczególnych latach",
+    x = "Rok",
+    y = "Suma sprzedaży"
+  )
+```
+
+Wykres pokazujący ilość transakcji dla każdego z dostępnych produktów
+
+```{r}
+ggplot(df, aes(x = fct_infreq(product))) +
+  geom_bar(fill = "steelblue") +
+  coord_flip() +
+  theme_minimal() +
+  labs(
+    title = "Liczba transakcji dla każdego produktu",
+    x = "Produkt",
+    y = "Liczba transakcji"
+  )
+```
+
+Wykres pokazujący sumy dochodów w zależności od miesiąca dla wszystkich lat w zbiorze
+
+```{r}
+seasonality <- df %>%
+  mutate(month_name = month(date, label = TRUE, abbr = FALSE)) %>%
+  group_by(month_name) %>%
+  summarise(total_sales = sum(amount, na.rm = TRUE))
+
+ggplot(seasonality, aes(x = month_name, y = total_sales)) +
+  geom_col(fill = "darkred", alpha = 0.8) +
+  theme_minimal() +
+  scale_y_continuous(labels = scales::dollar_format())+
+  labs(
+    title = "Łączne przychody ze sprzedaży w zależności od miesiąca",
+    x = "Miesiąc",
+    y = "Łączna sprzedaż"
+  )
+```
+
+Mapa ciepła przedstawiająca sprzedaż w każdym kraju dla każdego z produktów w zbiorze
+
+```{r}
+heatmap_data <- df %>%
+  group_by(country, product) %>%
+  summarise(total_sales = sum(amount, na.rm = TRUE),.groups = "drop")
+
+ggplot(heatmap_data, aes(x = country, y = product, fill = total_sales)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient(low = "lightgrey", high = "darkgreen") +
+  theme_minimal() +
+  labs(
+    title = "Mapa ciepła sprzedaży: Produkt vs Kraj",
+    x = "Kraj",
+    y = "Produkt",
+    fill = "Suma sprzedaży"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
