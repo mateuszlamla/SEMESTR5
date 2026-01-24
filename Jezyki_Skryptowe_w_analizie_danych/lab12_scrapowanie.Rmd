@@ -59,7 +59,6 @@ page = read_html(url_main)
 
 wiersze = page %>% html_nodes(".ui-dataview-row")
 
-
 nazwiska = c()
 linki = c()
 
@@ -72,49 +71,53 @@ for (wiersz in wiersze) {
   link = wiersz %>%
     html_node("a.infoLink") %>%
     html_attr("href")
-  
+
   pelny_link = paste0("https://omega.polsl.pl", link)
   
   nazwiska = c(nazwiska, nazwisko)
   linki = c(linki, pelny_link)
 }
-```
 
-```{r}
 pracownicy_df <- data.frame(
   Nazwisko = nazwiska,
   Url = linki,
   Publikacje = 0,
   stringsAsFactors = FALSE
 )
-print(pracownicy_df)
+
+print(head(pracownicy_df))
 ```
 
 ```{r}
 pobierz_publikacje = function(url){
+  tryCatch({
 
-  profil_page = read_html(url)
-  
-  
-  tekst =  profil_page %>%
-    html_nodes(".achievementsPanel a") %>%
-    html_text()
-  
-  liczba = as.numeric(str_extract(tekst, "^\\d+"))
+
+    page <- read_html(url)
+
+    items <- page %>% html_nodes(".achievementsPanel li")
+
+    for(item in items) {
+      label <- item %>% html_node(".achievementName") %>% html_text() %>% str_trim()
+      
+      if(!is.na(label) && str_detect(label, "Publikacje")) {
+
+        tekst_z_liczba <- item %>% html_node("a") %>% html_text()
+
+        liczba <- as.numeric(str_extract(tekst_z_liczba, "\\d+"))
+
+        return(liczba)
+      }
+    }
+
+    return(0)
     
-  print(liczba)
-  return(liczba)
+  }, error = function(e) {
+    print(paste("Błąd przy:", url, "-", e$message))
+    return(0)
+  })
 }
 ```
 
-```{r}
-for (i in 1:nrow(pracownicy_df))
-{
-  pub_count = pobierz_publikacje(pracownicy_df$Url[i])
-  pracownicy_df$Publikacje[i] = pub_count
-}
-```
+Przy przeszukiwaniu strony nie da się znaleźć diva z klasą, w której znajduje się liczba publikacji.
 
-```{r}
-print(pracownicy_df)
-```

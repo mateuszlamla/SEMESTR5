@@ -1,0 +1,192 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[T1]{fontenc}  
+\usepackage[utf8]{inputenc} 
+\usepackage[polish]{babel} 
+
+\usepackage{tgtermes} 
+
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+
+
+\usepackage{graphicx}
+\usepackage{float}     
+\usepackage{hyperref}  
+\usepackage{booktabs}  
+\usepackage{titlesec}  
+\usepackage{enumitem}   
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdftitle={Dokumentacja Projektu Eksploracji Danych},
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    
+    {\LARGE \textbf{Politechnika Śląska}} \\
+    {\large Wydział Matematyki Stosowanej} \\
+    \vspace{2cm}
+    
+    {\Large \textbf{Algorytmy Eksploracji Danych}} \\
+    \vspace{0.5cm}
+    {\large Dokumentacja Projektowa} \\
+    
+    \vspace{3cm}
+    
+    {\Huge \textbf{Analiza zachowań klientów sklepu internetowego przy użyciu metod redukcji wymiarów, klasteryzacji i reguł asocjacyjnych}} \\
+    
+    \vspace{4cm}
+    
+    \begin{flushright}
+        \textbf{Autorzy:} Jakub Darul, Mateusz Lamla \\
+        \textbf{Grupa:} 1 \\
+        \textbf{Semestr:} V \\
+        \textbf{Stopień:} I
+    \end{flushright}
+    
+    \vfill
+    
+    {\large \today}
+    
+\end{titlepage}
+
+% --- SPIS TREŚCI ---
+\tableofcontents
+\newpage
+
+% --- TREŚĆ WŁAŚCIWA ---
+
+\section{Wstęp}
+
+\subsection{Cel projektu}
+Celem niniejszego projektu jest przeprowadzenie kompleksowej analizy danych transakcyjnych pochodzących ze sklepu internetowego. Analiza ma na celu wyodrębnienie grup klientów o podobnych profilach zakupowych oraz odkrycie ukrytych wzorców (reguł asocjacyjnych) rządzących doborem produktów do koszyka. Wiedza ta w warunkach rzeczywistych pozwoliłaby na optymalizację strategii marketingowej oraz układu sklepu.
+
+\subsection{Zakres prac}
+Projekt obejmuje trzy główne etapy analizy:
+\begin{enumerate}
+    \item Przygotowanie danych i inżynierię cech (stworzenie modelu RFM - Recency, Frequency, Monetary).
+    \item Redukcję wymiarowości danych w celu wizualizacji struktury zbioru.
+    \item Segmentację klientów (klasteryzację).
+    \item Wykrywanie reguł asocjacyjnych (analiza koszykowa).
+\end{enumerate}
+
+\section{Opis wykorzystanego zbioru danych}
+
+Do analizy wykorzystano zbiór danych \textbf{"Online Retail Data Set"}, dostępny publicznie w repozytorium UCI Machine Learning Repository.
+
+Zbiór zawiera transakcje z brytyjskiego sklepu internetowego (e-commerce) sprzedającego upominki, z okresu od 01.12.2010 do 09.12.2011.
+
+\textbf{Główne atrybuty zbioru:}
+\begin{itemize}
+    \item \texttt{InvoiceNo}: Unikalny numer transakcji.
+    \item \texttt{StockCode}: Kod produktu.
+    \item \texttt{Description}: Nazwa produktu.
+    \item \texttt{Quantity}: Liczba sztuk produktu w transakcji.
+    \item \texttt{InvoiceDate}: Data i czas transakcji.
+    \item \texttt{UnitPrice}: Cena jednostkowa (w funtach szterlingach).
+    \item \texttt{CustomerID}: Unikalny identyfikator klienta.
+    \item \texttt{Country}: Kraj zamieszkania klienta.
+\end{itemize}
+
+Przed analizą dane zostały oczyszczone z brakujących identyfikatorów klientów oraz zwrotów (ujemne wartości w polu \texttt{Quantity}).
+
+\section{Opis zastosowanych metod}
+
+W projekcie wykorzystano trzy grupy metod eksploracji danych.
+
+\subsection{Redukcja wymiarów: PCA}
+\textbf{Cel:} Zmniejszenie liczby zmiennych opisujących klienta przy zachowaniu jak największej ilości informacji (wariancji), co umożliwia wizualizację wielowymiarowych danych na płaszczyźnie 2D.
+\\
+\textbf{Charakterystyka:} PCA (Principal Component Analysis) to technika statystyczna przekształcająca zbiór skorelowanych zmiennych w mniejszy zbiór nieskorelowanych zmiennych zwanych głównymi składowymi.
+
+\subsection{Klasteryzacja: k-Means}
+\textbf{Cel:} Podział bazy klientów na rozłączne grupy (segmenty), wewnątrz których klienci są do siebie podobni.
+\\
+\textbf{Charakterystyka:} Algorytm k-średnich (k-Means) iteracyjnie przypisuje punkty danych do jednego z $k$ skupień, dążąc do minimalizacji wariancji wewnątrz klastrów. Wymaga wcześniejszego określenia liczby grup.
+
+\subsection{Reguły asocjacyjne: Algorytm Apriori}
+\textbf{Cel:} Znalezienie powiązań między produktami, tzn. określenie, jakie produkty są często kupowane razem.
+\\
+\textbf{Charakterystyka:} Algorytm Apriori przeszukuje bazę transakcji w celu znalezienia częstych zbiorów produktów, a następnie generuje reguły typu "Jeżeli klient kupił A, to kupi B" na podstawie miar takich jak \textit{Support}, \textit{Confidence} i \textit{Lift}.
+
+\section{Opis implementacji}
+
+Projekt został zrealizowany w języku \textbf{Python}. Do analizy wykorzystano następujące biblioteki:
+\begin{itemize}
+    \item \textbf{Pandas \& NumPy:} Przetwarzanie i agregacja danych (stworzenie tabeli z cechami: Frequency, Monetary, Variety).
+    \item \textbf{Scikit-learn:} Standaryzacja danych (\texttt{StandardScaler}), implementacja PCA oraz algorytmu k-Means.
+    \item \textbf{Mlxtend:} Implementacja algorytmu Apriori oraz generowanie reguł asocjacyjnych.
+    \item \textbf{Matplotlib \& Seaborn:} Wizualizacja wyników.
+\end{itemize}
+
+\section{Wyniki i interpretacja}
+
+\subsection{Wyniki redukcji wymiarów (PCA)}
+
+Zastosowanie PCA pozwoliło zredukować trzy wymiary opisujące klienta (częstotliwość zakupów, wartość koszyka, różnorodność) do dwóch głównych składowych.
+
+\begin{figure}[H]
+    \centering
+    % W TYM MIEJSCU WSTAW SWÓJ PLIK: \includegraphics[width=0.8\textwidth]{pca_plot.png}
+    \framebox{\parbox{0.8\textwidth}{\centering \vspace{3cm} TU WSTAW ZDJĘCIE WYKRESU PCA (SCREE PLOT) \vspace{3cm}}}
+    \caption{Wykres osypiska (Scree Plot) pokazujący wariancję wyjaśnioną przez składowe.}
+    \label{fig:pca}
+\end{figure}
+
+\textbf{Wynik liczbowy:} Pierwsze dwie składowe (PC1 i PC2) wyjaśniają łącznie około 90\% wariancji zbioru. Oznacza to, że reprezentacja 2D jest wiarygodnym przybliżeniem rzeczywistej struktury danych.
+
+\subsection{Wyniki klasteryzacji (k-Means)}
+
+Algorytm k-Means podzielił klientów na 3 klastry. Poniższy wykres przedstawia rozmieszczenie klientów w przestrzeni wyznaczonej przez PCA.
+
+\begin{figure}[H]
+    \centering
+    % W TYM MIEJSCU WSTAW SWÓJ PLIK: \includegraphics[width=0.8\textwidth]{kmeans_plot.png}
+    \framebox{\parbox{0.8\textwidth}{\centering \vspace{3cm} TU WSTAW ZDJĘCIE WYKRESU K-MEANS \vspace{3cm}}}
+    \caption{Segmentacja klientów - wizualizacja klastrów na płaszczyźnie PCA.}
+    \label{fig:kmeans}
+\end{figure}
+
+\textbf{Interpretacja klastrów (na podstawie średnich wartości):}
+\begin{itemize}
+    \item \textbf{Klaster 0 (Niebieski):} Klienci okazjonalni. Niska częstotliwość zakupów i niska wartość koszyka. Stanowią najliczniejszą grupę.
+    \item \textbf{Klaster 1 (Zielony):} Klienci regularni. Średnie wydatki, częstsze powroty do sklepu.
+    \item \textbf{Klaster 2 (Żółty):} Klienci VIP / Hurtownicy. Bardzo wysoka wartość \texttt{Monetary} i \texttt{Frequency}. Jest to grupa nieliczna, ale kluczowa dla przychodów sklepu.
+\end{itemize}
+
+\subsection{Wyniki reguł asocjacyjnych (Apriori)}
+
+Analiza koszykowa (dla transakcji z Francji) pozwoliła wykryć silne zależności między produktami. Wykres przedstawia zależność między wsparciem (Support) a pewnością (Confidence) reguł.
+
+\begin{figure}[H]
+    \centering
+    % W TYM MIEJSCU WSTAW SWÓJ PLIK: \includegraphics[width=0.8\textwidth]{apriori_plot.png}
+    \framebox{\parbox{0.8\textwidth}{\centering \vspace{3cm} TU WSTAW ZDJĘCIE WYKRESU APRIORI \vspace{3cm}}}
+    \caption{Rozkład reguł asocjacyjnych: Support vs Confidence (Kolor = Lift).}
+    \label{fig:apriori}
+\end{figure}
+
+\textbf{Przykładowa znaleziona reguła:}
+\begin{verbatim}
+Antecedents: {SET/6 RED SPOTTY PAPER PLATES}
+Consequents: {SET/6 RED SPOTTY PAPER CUPS}
+Lift: > 1, Confidence: ~0.8-0.9
+\end{verbatim}
+
+\textbf{Interpretacja:} Klienci kupujący papierowe talerzyki w czerwone kropki z bardzo dużym prawdopodobieństwem (bliskim 90\%) kupują również pasujące do zestawu kubeczki. Wysoki wskaźnik \textit{Lift} potwierdza, że nie jest to zbieg okoliczności, lecz silna korelacja produktowa.
+
+\section{Podsumowanie}
+
+Przeprowadzona analiza pozwoliła na skuteczne przetworzenie surowych danych transakcyjnych w użyteczną wiedzę biznesową.
+Dzięki metodzie PCA możliwa była wizualizacja wielowymiarowych danych. Klasteryzacja k-Means pozwoliła wyodrębnić grupę najbardziej dochodowych klientów (VIP), do których można skierować dedykowane kampanie marketingowe. Z kolei reguły asocjacyjne wskazały konkretne pary produktów (np. zestawy imprezowe), które powinny być oferowane razem (cross-selling) w celu zwiększenia sprzedaży.
+
+Wybór metod okazał się trafny dla specyfiki danych e-commerce, łącząc analizę behawioralną (segmentacja) z analizą produktową (koszykową).
+
+\end{document}
