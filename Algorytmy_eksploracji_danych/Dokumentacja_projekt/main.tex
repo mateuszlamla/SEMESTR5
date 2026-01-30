@@ -1,0 +1,291 @@
+% !TeX spellcheck = pl_PL-Polish
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\selectlanguage{polish}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+\def\projectName{Analiza zbioru sprzedaży detalicznej online}
+\def\authorA{Jakub Darul}
+\def\authorB{Mateusz Lamla}
+\newcommand\todo[1]{\textcolor{red}{#1}}
+
+\begin{document}
+\pagenumbering{gobble}
+\clearpage
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.5\linewidth]{media/ps-logo.png}
+	\end{figure}
+
+\hspace{3cm}
+	\begin{center}\large\textbf{Algorytmy Eksploracji Danych}\end{center}
+	\hspace{3cm}
+	\begin{center}\large{\projectName}\end{center}
+
+\hspace{7cm}
+		\begin{flushleft}Członkowie zespołu:
+		\par
+		\textit{\authorA, gr. 1/1}
+		\par
+		\textit{\authorB, gr. 1/1}
+	\end{flushleft}
+	\begin{flushright}Kierunek: Informatyka
+		\par
+		Semestr 5, Stopień I
+		\par
+		Specjalizacja: Inżynieria Analizy Danych
+		\end{flushright}
+\vfill
+	\begin{center}Politechnika Śląska\end{center}
+	\begin{center}Wydział Matematyki Stosowanej\end{center}
+	\begin{center}\today\end{center}
+
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+
+\newpage
+
+% -----------------------SEKCJA WPROWADZENIE---------------------------
+
+\section{Wprowadzenie}
+
+\subsection{Cel projektu}
+Głównym celem projektu jest przeprowadzenie procesu eksploracji danych na wybranym zbiorze danych, aby odkryć ukryte w nim struktury oraz zależności. Projekt zakłada zastosowanie metod odpowiadających za proces redukcji wymiarowości danych oraz ich segmentacji (klasteryzacji). Istotnym aspektem jest również analiza wpływu redukcji wymiaru na jakość i interpretowalność uzyskanych klastrów, a także próba wyekstrahowania charakterystycznych wzorców dla poszczególnych grup.
+\subsection{Opis projektu}
+Projekt składa się z kilku kluczowych etapów przetwarzania danych, zgodnych ze standardem procesu KDD. W pierwszej fazie następuje wstępne przetworzenie zbioru danych, obejmujące czyszczenie oraz standaryzację cech. Następnie, w celu wizualizacji oraz eliminacji szumu i redundancji, wykorzystana zostaje metoda Analizy Głównych Składowych (PCA). Na tak przygotowanych danych (zarówno w przestrzeni oryginalnej, jak i zredukowanej) stosowany jest algorytm K-means w celu wyodrębnienia jednorodnych podgrup obiektów. Końcowym etapem jest analiza uzyskanych wyników oraz interpretacja cech dominujących w wyznaczonych klastrach.
+
+% -----------------------SEKCJA ZBIORU DANYCH---------------------------
+
+\section{Zbiór danych}
+W projekcie wykorzystano zbiór danych \textit{Online Retail II}, pochodzący z repozytorium UCI Machine Learning Repository i dostępny na platformie Kaggle. Zbiór zawiera dane transakcyjne zarejestrowane przez brytyjski sklep internetowy (e-commerce) w okresie od 01.12.2009 do 09.12.2011. Firma specjalizuje się w sprzedaży unikalnych upominków na różne okazje, a znaczną część jej klientów stanowią hurtownicy.
+
+Zbiór danych ma charakter rzeczywisty i składa się z rekordów reprezentujących poszczególne pozycje na fakturach sprzedażowych.
+
+\subsection{Atrybuty zbioru danych}
+Oryginalny zbiór danych zawiera 8 atrybutów (cech). Poniżej przedstawiono ich szczegółowy opis:
+
+\begin{itemize}
+    \item \textbf{Invoice} (Numer faktury): Typ nominalny. 6-cyfrowy numer całkowity unikalnie przypisany do każdej transakcji. Jeżeli kod ten zaczyna się od litery 'c', oznacza to anulowanie zamówienia (zwrot).
+    \item \textbf{StockCode} (Kod produktu): Typ nominalny. 5-cyfrowy numer całkowity unikalnie przypisany do każdego odrębnego produktu w ofercie.
+    \item \textbf{Description} (Opis produktu): Typ nominalny. Nazwa (opis) produktu.
+    \item \textbf{Quantity} (Ilość): Typ numeryczny. Liczba sztuk danego produktu przypadająca na transakcję.
+    \item \textbf{InvoiceDate} (Data faktury): Typ numeryczny (Data/Czas). Dzień i godzina wygenerowania każdej transakcji.
+    \item \textbf{Price} (Cena jednostkowa): Typ numeryczny. Cena produktu za sztukę (wyrażona w funtach).
+    \item \textbf{Customer ID} (Identyfikator klienta): Typ nominalny. 5-cyfrowy numer całkowity unikalnie przypisany do każdego klienta.
+    \item \textbf{Country} (Kraj): Typ nominalny. Nazwa kraju, w którym znajduje się klient.
+\end{itemize}
+
+\subsection{Charakterystyka danych}
+Zbiór danych charakteryzuje się kilkoma istotnymi właściwościami, które mają wpływ na dalsze etapy przetwarzania:
+\begin{enumerate}
+    \item \textbf{Braki danych:} Atrybut \textit{Customer ID} zawiera puste wartości dla części transakcji (np. zakupy dokonane przez gości bez rejestracji), co jest kluczowe w kontekście segmentacji klientów.
+    \item \textbf{Transakcje zwrotne:} Występowanie ujemnych wartości w kolumnie \textit{Quantity} oraz prefiksu 'c' w \textit{InvoiceNo} wskazuje na anulowane transakcje, które mogą wymagać odfiltrowania.
+    \item \textbf{Wymiarowość:} Dane mają charakter transakcyjny (wiersz = produkt w koszyku), co oznacza, że przed zastosowaniem algorytmów takich jak PCA czy K-means, konieczna będzie agregacja danych do poziomu klienta lub koszyka zakupowego (np. stworzenie macierzy RFM: Recency, Frequency, Monetary).
+\end{enumerate}
+
+% -----------------------SEKCJA METOD---------------------------
+
+\section{Zastosowane metody}
+
+% -----------------------PCA---------------------------
+
+\subsection{Redukcja wymiaru PCA}
+
+\subsubsection{Cel}
+
+Analiza Głównych Składowych (ang. \textit{Principal Component Analysis}, PCA) została zastosowana w celu redukcji wymiarowości przestrzeni cech przy jednoczesnym zachowaniu jak największej ilości informacji (wariancji) zawartej w oryginalnym zbiorze danych. Metoda ta pozwala na:
+\begin{itemize}
+    \item Wizualizację wielowymiarowych danych w przestrzeni 2D lub 3D.
+    \item Usunięcie skorelowanych zmiennych.
+    \item Zmniejszenie kosztu obliczeniowego dla kolejnych algorytmów (np. klasteryzacji).
+\end{itemize}
+
+\subsubsection{Opis metody}
+Analiza Składowych Głównych (PCA) jest kluczową techniką statystyczną, której głównym celem jest redukcja liczby zmiennych opisujących badane zjawisko przy jednoczesnym zachowaniu maksymalnej ilości niesionej przez nie informacji (wariancji). Pozwala ona na przekształcenie rozbudowanego zestawu skorelowanych cech w mniejszy zbiór nowych zmiennych.
+
+Charakterystyka składowych głównych:
+\begin{itemize}
+    \item \textbf{Syntetyczność:} Są to zmienne ,,sztuczne'' (nieobserwowalne bezpośrednio), będące liniowymi kombinacjami zmiennych pierwotnych.
+    \item \textbf{Ortogonalność:} Nowe zmienne są wzajemnie nieskorelowane, co eliminuje problem nadmiarowości informacji.
+    \item \textbf{Hierarchiczność:} Pierwsza składowa wyjaśnia największą część całkowitej wariancji układu. Każda kolejna jest konstruowana tak, aby wyjaśnić maksymalną część zmienności pozostałej po uwzględnieniu poprzednich składowych.
+\end{itemize}
+
+Istotnym elementem analizy jest interpretacja nowych zmiennych, dokonywana w oparciu o tzw. \textbf{ładunki czynnikowe}. Są to współczynniki korelacji pomiędzy zmiennymi wyjściowymi a poszczególnymi składowymi. Zmienne o wysokich ładunkach mają największy wkład w budowę danej składowej, co pozwala nadać jej merytoryczne znaczenie.
+
+Kluczowym etapem PCA jest decyzja o liczbie pozostawionych składowych. W praktyce stosuje się trzy główne kryteria decyzyjne:
+\begin{enumerate}
+    \item \textbf{Kryterium procentowe:} Zakłada uwzględnienie tylu początkowych składowych, aby suma wyjaśnianej przez nie wariancji przekroczyła określony próg (zazwyczaj 75\% lub 80\%).
+    \item \textbf{Kryterium Kaisera:} Rekomenduje pozostawienie wyłącznie tych składowych, którym odpowiadają wartości własne macierzy korelacji większe od 1. Oznacza to, że składowa musi wyjaśniać więcej zmienności niż pojedyncza zmienna oryginalna.
+    \item \textbf{Kryterium Cattella (wykres osypiska):} Metoda graficzna polegająca na analizie wykresu wartości własnych. Wybiera się składowe znajdujące się przed punktem, w którym wykres zaczyna łagodnie opadać (tworząc tzw. osypisko), co wskazuje na wygasanie istotnej zmienności.
+\end{enumerate}
+
+% -----------------------KMEANS---------------------------
+
+\subsection{Klasteryzacja K-means}
+
+\subsubsection{Cel}
+Algorytm K-means (K-średnich) został użyty w celu pogrupowania obiektów w zbiorze danych na $k$ rozłącznych klastrów. Celem jest taki podział danych, aby obiekty wewnątrz jednej grupy były do siebie jak najbardziej podobne, a obiekty z różnych grup jak najbardziej różne.
+
+\subsubsection{Opis metody}
+K-means jest algorytmem iteracyjnym, który dąży do zminimalizowania wariancji wewnątrzklastrowej. Jako miarę niepodobieństwa najczęściej stosuje się kwadrat odległości euklidesowej.
+
+Algorytm działa w następujących krokach:
+\begin{enumerate}
+    \item \textbf{Inicjalizacja:} Losowy wybór $k$ punktów jako początkowych środków klastrów (centroidów).
+    \item \textbf{Przypisanie:} Każdy punkt danych jest przypisywany do klastra, którego centroid znajduje się najbliżej:
+    \item \textbf{Aktualizacja:} Obliczane są nowe środki klastrów poprzez wyznaczenie średniej arytmetycznej punktów należących do danego klastra.
+    \item Kroki 2 i 3 są powtarzane aż do momentu osiągnięcia kryterium stopu (np. brak zmian w przypisaniach punktów).
+\end{enumerate}
+
+% -----------------------WZORCE---------------------------
+
+\subsection{Reguly asocjacji}
+\subsubsection{Cel}
+Celem zastosowania analizy asocjacji (reguł asocjacyjnych) jest wykrycie powiązań pomiędzy obiektami w dużych zbiorach danych. W kontekście sprzedaży detalicznej, technika ta, znana jako analiza koszykowa (Market Basket Analysis), pozwala odpowiedzieć na pytanie: „Które produkty są najczęściej kupowane razem?”. Wiedza ta jest kluczowa dla budowania systemów rekomendacyjnych oraz optymalizacji strategii cross-sellingu.
+
+\subsubsection{Opis metody}
+Do wygenerowania reguł asocjacyjnych wykorzystuje się algorytmy takie jak Apriori lub FP-Growth. Reguła asocjacyjna przyjmuje postać $X \rightarrow Y$, gdzie $X$ (poprzednik) i $Y$ (następnik) to rozłączne zbiory produktów.
+
+Siłę i użyteczność reguł ocenia się za pomocą trzech podstawowych miar:
+\begin{itemize}
+    \item \textbf{Wsparcie (Support):} Określa, jak popularny jest dany zestaw produktów w całej bazie transakcji. Oblicza się je jako stosunek liczby transakcji zawierających zarówno $X$, jak i $Y$, do całkowitej liczby transakcji.
+    \item \textbf{Ufność (Confidence):} Prawdopodobieństwo warunkowe zakupu produktu $Y$, pod warunkiem że w koszyku znajduje się już produkt $X$. Wysoka ufność oznacza silną zależność.
+    \item \textbf{Lift:} Wskaźnik określający, ile razy częściej produkty $X$ i $Y$ występują razem, niż wynikałoby to z ich niezależności statystycznej.
+    \begin{itemize}
+        \item $Lift > 1$: Produkty są powiązane pozytywnie (występują razem częściej niż przypadkowo).
+        \item $Lift = 1$: Produkty są niezależne.
+        \item $Lift < 1$: Produkty są powiązane negatywnie (występują razem rzadziej niż przypadkowo).
+    \end{itemize}
+\end{itemize}
+
+% -----------------------SEKCJA IMPLEMENTACJA---------------------------
+
+\section{Opis implementacji}
+\subsection{Zastosowane biblioteki}
+Projekt został zrealizowany w języku Python, wykorzystując szereg bibliotek do analizy danych, obliczeń numerycznych oraz uczenia maszynowego. Poniżej przedstawiono wykaz kluczowych pakietów użytych w procesie implementacji:
+
+\begin{itemize}
+    \item \textbf{Pandas:} Podstawowa biblioteka służąca do manipulacji i analizy danych. W projekcie wykorzystana głównie do wczytania zbioru danych oraz przeprowadzania operacji czyszczenia, filtracji i agregacji.
+
+    \item \textbf{NumPy:} Fundamentalny pakiet do obliczeń naukowych. Zapewnia obsługę wielowymiarowych tablic i macierzy oraz zestaw funkcji matematycznych niezbędnych do wykonywania operacji na wektorach.
+
+    \item \textbf{Scikit-learn (sklearn):} Najpopularniejsza biblioteka do uczenia maszynowego, oferująca szeroki wachlarz efektywnych narzędzi do analizy danych. W ramach projektu wykorzystano moduły odpowiedzialne za:
+    \begin{itemize}
+        \item \textit{Preprocessing:} Standaryzacja i skalowanie danych.
+        \item \textit{Decomposition:} Implementacja algorytmu redukcji wymiaru (PCA).
+        \item \textit{Cluster:} Implementacja algorytmu grupowania (K-means).
+        \item \textit{Metrics:} Ewaluacja jakości modeli.
+    \end{itemize}
+
+    \item \textbf{Matplotlib:} Standardowa biblioteka do tworzenia wizualizacji. Użyta do generowania wykresów pomocniczych oraz wizualizacji 3D przestrzeni po redukcji wymiaru.
+
+    \item \textbf{Seaborn:} Biblioteka bazująca na Matplotlib, służąca do wizualizacji danych statystycznych. Została wykorzystana do stworzenia bardziej czytelnych i estetycznych wykresów, w tym map ciepła (heatmap) obrazujących profile klastrów.
+
+    \item \textbf{Factor Analyzer:} Specjalistyczna biblioteka umożliwiająca przeprowadzanie analizy czynnikowej oraz testów statystycznych. W projekcie posłużyła do weryfikacji zasadności zastosowania redukcji wymiaru (test sferyczności Bartletta oraz miara KMO).
+\end{itemize}
+
+\subsection{Zastosowane funkcje i algorytmy}
+W procesie implementacji wykorzystano następujące kluczowe funkcje i metody:
+\begin{itemize}
+    \item \textbf{Przetwarzanie danych:}
+    \begin{itemize}
+        \item \texttt{pandas.groupby()} oraz \texttt{agg()}: Użyte do agregacji danych transakcyjnych do poziomu klienta w celu wyliczenia metryk RFM (Recency, Frequency, Monetary).
+        \item \texttt{pandas.pivot\_table()}: Wykorzystane do przekształcenia danych do formatu "koszykowego" (transakcja $\times$ produkt), niezbędnego do analizy reguł asocjacyjnych.
+    \end{itemize}
+
+    \item \textbf{Standaryzacja i Redukcja wymiaru:}
+    \begin{itemize}
+        \item \texttt{StandardScaler.fit\_transform()}: Metoda służąca do standaryzacji cech.
+        \item \texttt{PCA(n\_components=...)}: Inicjalizacja obiektu PCA.
+        \item \texttt{pca.fit\_transform()}: Wyznaczenie głównych składowych i rzutowanie danych na nową przestrzeń.
+    \end{itemize}
+
+    \item \textbf{Klasteryzacja i Ewaluacja:}
+    \begin{itemize}
+        \item \texttt{KMeans(n\_clusters=...)}: Inicjalizacja modelu K-średnich.
+        \item \texttt{kmeans.fit\_predict()}: Dopasowanie modelu do danych i przypisanie etykiet klastrów.
+        \item \texttt{silhouette\_score()}, \texttt{davies\_bouldin\_score()}: Funkcje obliczające metryki walidacji wewnętrznej klastrów.
+    \end{itemize}
+\end{itemize}
+
+% -----------------------SEKCJA WYNIKÓW---------------------------
+
+\section{Wyniki}
+\subsection{PCA}
+W pierwszej fazie analizy sprawdzono zasadność zastosowania redukcji wymiarowości. Przeprowadzono test sferyczności Bartletta, który dał wynik istotny statystycznie ($p < 0.05$), co oznacza, że zmienne w zbiorze są ze sobą skorelowane. Dodatkowo, miara KMO (Kaiser-Meyer-Olkin) wyniosła \textbf{0.979}, co potwierdza wysoką przydatność danych do analizy czynnikowej i PCA.
+
+Analiza wariancji (scree plot) pozwoliła na dobór optymalnej liczby składowych. Przyjęto próg wyjaśnionej wariancji na poziomie 90\%. Pozwoliło to na zredukowanie przestrzeni cech do \textbf{28 głównych składowych}. Jest to znaczna redukcja w stosunku do pierwotnego wymiaru, przy zachowaniu kluczowych informacji o strukturze danych.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{media/pca_90.png}
+	\caption{Wykres analizy wariancji (scree plot) dla wyboru liczby głównych składowych}
+\end{figure}
+
+\subsection{K-means}
+Dla zredukowanego zbioru danych przeprowadzono klasteryzację metodą K-means. Aby wyznaczyć optymalną liczbę klastrów ($k$), posłużono się metodą łokcia (Elbow Method), analizując wykres inercji w funkcji $k$. Zauważalne załamanie krzywej nastąpiło dla $k=4$, co przyjęto jako finalną liczbę grup.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{media/lokiec.png}
+	\caption{Wykres metody łokcia dla wyboru liczby klastrów}
+\end{figure}
+Jakość podziału zweryfikowano za pomocą:
+\begin{itemize}
+    \item \textbf{Silhouette Score: 0.664} – Wynik ten świadczy o dobrej separacji klastrów i wysokiej spójności wewnątrz grup (wartości bliskie 1 oznaczają bardzo dobry podział).
+    \item \textbf{Davies-Bouldin Index: 1.168} – Stosunkowo niska wartość wskaźnika potwierdza poprawność podziału (im niżej, tym lepiej).
+    \item \textbf{Calinski-Harabasz Index: 2476.73} – Wysoka wartość wskazuje na dobrze zdefiniowane, zwarte klastry.
+\end{itemize}
+
+W celu dokładniejszej interpretacji wyników, sporządzono mapę ciepła (heatmap), prezentującą średnie znormalizowane wartości atrybutów dla poszczególnych klastrów. Wizualizacja ta pozwala na identyfikację cech dominujących w każdej z grup.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{media/heatmap.png}
+    \caption{Mapa ciepła (Heatmap) cech klientów w podziale na klastry}
+\end{figure}
+
+Analiza mapy ciepła prowadzi do następujących wniosków dotyczących profilu klientów w każdym z klastrów:
+\begin{itemize}
+    \item \textbf{Klaster 0 (Okazjonalni):} Klienci o niskiej aktywności i wartości koszyka. Jest to grupa najliczniejsza, składająca się z kupujących sporadycznie.
+    \item \textbf{Klaster 1 (Lojalni):} Klienci aktywni, o średniej wartości zakupów, ale wysokiej częstotliwości. Stanowią stabilną bazę lojalnych odbiorców.
+    \item \textbf{Klaster 2 (VIP):} Grupa wyróżniająca się bardzo wysokimi wydatkami (Monetary) oraz częstotliwością. Mimo niewielkiej liczebności, generują znaczną część przychodu sklepu.
+    \item \textbf{Klaster 3 (Uśpieni/Odchodzący):} Klienci, którzy w przeszłości dokonywali zakupów, ale obecnie zaprzestali aktywności (bardzo wysoki wskaźnik Recency).
+\end{itemize}
+
+\subsection{Reguły asocjacji}
+Analiza reguł asocjacyjnych pozwoliła na zidentyfikowanie produktów, które klienci najczęściej kupują wspólnie. Wcielając się w rolę analityka doradzającego klientowi biznesowemu, możemy wskazać konkretne mechanizmy zakupowe:
+
+\begin{itemize}
+    \item \textbf{Zjawisko komplementarności sprzętowej:} Zaobserwowano bardzo silną regułę ($Lift > 5$) łączącą zakup monitorów lub komputerów z akcesoriami takimi jak kable HDMI czy uchwyty.
+    \textit{Interpretacja dla klienta:} Jeśli ktoś kupuje monitor, prawie na pewno potrzebuje kabla. To nie jest przypadek.
+    
+    \item \textbf{Zestawy dekoracyjne:} Klienci kupujący świece dekoracyjne w jednym kolorze, bardzo często dobierają do koszyka świeczniki lub serwetki z tej samej linii stylistycznej.
+    
+    \item \textbf{Rekomendacja:} Wykorzystując te dane, sklep może zwiększyć średnią wartość koszyka, proponując te produkty automatycznie („Klienci, którzy kupili ten produkt, wybrali również...”), zamiast liczyć na to, że klient sam je znajdzie.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{media/association_rules.png}
+    \caption{Wykres najsilniejszych reguł asocjacyjnych}
+\end{figure}
+
+\subsection{Wnioski}
+Zastosowanie algorytmu PCA w połączeniu z K-means pozwoliło na skuteczną segmentację bazy klientów. Redukcja wymiarowości do 28 głównych składowych umożliwiła zachowanie istotnych informacji przy jednoczesnym uproszczeniu struktury danych. Klasteryzacja wykazała istnienie czterech wyraźnie zdefiniowanych grup klientów, co zostało potwierdzone przez wysokie wartości wskaźników walidacji wewnętrznej. Analiza charakterystyk poszczególnych klastrów pozwoliła na wyodrębnienie unikalnych wzorców zachowań zakupowych, co może być wykorzystane do celów marketingowych i personalizacji oferty. 
+% -----------------------SEKCJA PODSUMOWANIE---------------------------
+
+\section{Podsumowanie}
+Realizacja projektu pozwoliła na przejście przez pełny proces eksploracji danych (KDD). Wykazano, że surowe dane transakcyjne kryją w sobie cenną wiedzę o strukturze bazy klienckiej. Zastosowanie redukcji wymiarowości (PCA) znacząco usprawniło proces klasteryzacji, pozwalając na wyodrębnienie spójnych grup klientów.
+
+Dzięki segmentacji sklep może przestać traktować wszystkich klientów tak samo, a dzięki regułom asocjacyjnym – lepiej odpowiadać na ich potrzeby, co bezpośrednio przekłada się na optymalizację zysków.
+
+\end{document}
